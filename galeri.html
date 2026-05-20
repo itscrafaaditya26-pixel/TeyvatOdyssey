@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Gallery - miHoYo</title>
+    <link rel="stylesheet" href="style.css?v=1.9">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="brand-title">
+            <span class="main-title">Media Gallery</span>
+            <span class="sub-title">Rafa Rafka</span>
+        </div>
+    </div>
+
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+
+        <details class="dropdown">
+            <summary>About HoYoverse <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="#">Our Origin</a>
+                <a href="#">Timeline</a>
+            </div>
+        </details>
+
+        <details class="dropdown" open> <summary>The Universe <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="#">The Masterpieces</a>
+                <a href="#">Tech & Innovation</a>
+                <a href="galeri.html" class="active">Media Gallery</a>
+            </div>
+        </details>
+
+        <a href="#">Disclaimer & Credit</a>
+
+        <a href="profil.html">About Me</a>
+    </div>
+
+    <div class="main-content">
+        <div class="hero">
+            
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="miHoYo.jpg" class="hero-logo" alt="Slide 1">
+                    <img src="miHoYo.jpg" class="hero-logo" alt="Slide 2">
+                    <img src="miHoYo.jpg" class="hero-logo" alt="Slide 3">
+                </div>
+            </div>
+            <h1>Visual Universe</h1>
+            <p class="hero-subtitle">HoYoverse Game Gallery</p>
+            <p class="hero-desc" style="text-align: center;">
+                Selamat datang di galeri visual. Di sini kamu bisa melihat cuplikan keindahan dunia yang telah diciptakan oleh miHoYo melalui teknologi rendering mutakhir.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Copyright by Rafa Aditya 2026
+    </footer>
+
+    <script>
+        function toggleMenu(){
+            document.getElementById("sidebar").classList.toggle("show");
+            document.getElementById("overlay").classList.toggle("show");
+            document.querySelector(".menu-button").classList.toggle("active");
+        }
+    </script>
+
+</body>
+  </html>
+                      
