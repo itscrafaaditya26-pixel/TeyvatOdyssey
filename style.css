@@ -155,7 +155,6 @@ body{
     color:#111;
 }
 
-/* Desain untuk Subtitle (Tetap Bold & Tengah) */
 .hero-subtitle {
     font-size: 5vw;
     font-weight: 700;
@@ -163,20 +162,25 @@ body{
     color: #222;
 }
 
-/* DESAIN BARU: Spesifik untuk Paragraf Panjang Supaya Rapi */
+/* PARAGRAF DESKRIPSI (RATA KANAN KIRI LURUS PRECISI) */
 .hero-desc {
-    font-size: 4vw;          /* Ukuran teks proposional untuk layar HP */
-    font-weight: 400;        /* Ketebalan normal, tidak tebal agar bersih */
-    line-height: 1.6;        /* Memberi spasi antar baris kalimat */
-    text-align: justify;     /* Membuat rata kanan-kiri */
-    color: #555;             /* Warna abu-abu gelap agar lebih nyaman di mata */
-    max-width: 500px;        /* Batas lebar maksimal teks */
-    margin: 0 auto;          /* Posisi box paragraf tetap di tengah */
-    padding: 0 10px;         /* Jarak teks dari tepi kiri-kanan layar HP */
+    font-size: 4vw;          
+    font-weight: 400;        
+    line-height: 1.6;        
+    color: #444;             
+    max-width: 600px;        
+    margin: 0 auto;          
+    padding: 0 15px;         
+
+    /* Kunci utama agar pinggiran lurus datar (tidak bergelombang) */
+    text-align: justify;     
+    text-justify: inter-word; /* Mengatur spasi antar kata agar lebih natural */
+    word-break: break-word;   /* Memutus kata panjang jika melebihi layar */
+    hyphens: auto;            /* Memotong suku kata otomatis memakai tanda hubung (-) jika mentok */
 }
 
 /* ================= FOOTER ================= */
-... {
+footer{
     text-align:center;
     padding:24px;
     background:white;
@@ -204,7 +208,6 @@ body{
         font-size:26px;
     }
 
-    /* Penyesuaian deskripsi saat dibuka di laptop */
     .hero-desc{
         font-size:16px;
         line-height: 1.7;
