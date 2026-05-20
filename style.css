@@ -10,33 +10,33 @@ body{
     overflow-x:hidden;
 }
 
-/* ================= BATANG HITAM ATAS (SEUKURAN APLIKASI) ================= */
+/* ================= BATANG HITAM ATAS ================= */
 .top-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Tinggi dikecilkan jadi 60px agar pas seukuran top bar aplikasi */
+    height: 60px; 
     background: rgba(20, 20, 25, 0.96); 
     backdrop-filter: blur(20px); 
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 997; 
 }
 
-/* ================= TOMBOL GARIS 3 (DISESUAIKAN) ================= */
+/* ================= TOMBOL GARIS 3 ================= */
 .menu-button{
     position:fixed;
-    top: 10px; /* 10px dari atas agar pas di tengah vertikal (10px + 40px + 10px = 60px) */
+    top: 10px; 
     left: 15px;
-    width: 40px; /* Ukuran kotak tombol diperkecil jadi 40px */
+    width: 40px; 
     height: 40px;
-    background: transparent; /* Dibuat transparan murni seperti tombol menu aplikasi */
+    background: transparent; 
     border-radius: 8px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    gap: 5px; /* Jarak antar garis sedikit dirapatkan */
+    gap: 5px; 
     cursor:pointer;
     z-index:1000;
     transition:0.3s;
@@ -47,14 +47,13 @@ body{
 }
 
 .menu-button span{
-    width: 22px; /* Lebar garis disesuaikan dengan tombol yang lebih kecil */
-    height: 2px; /* Tebal garis dibuat lebih minimalis */
+    width: 22px; 
+    height: 2px; 
     background:#00d9ff;
     border-radius:10px;
     transition:0.4s;
 }
 
-/* Animasi X untuk ukuran tombol baru */
 .menu-button.active span:nth-child(1){
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -97,7 +96,7 @@ body{
     height:100vh;
     background: rgba(15, 15, 20, 0.96);
     backdrop-filter:blur(20px);
-    padding: 80px 20px 20px; /* Padding atas disesuaikan */
+    padding: 80px 20px 20px; 
     transition: 0.5s cubic-bezier(.77,0,.18,1);
     z-index:999;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
@@ -138,7 +137,7 @@ body{
 /* ================= HERO ================= */
 .hero{
     text-align:center;
-    padding: 100px 20px 60px; /* Jarak atas disesuaikan menjadi 100px agar pas di bawah top-bar baru */
+    padding: 100px 20px 60px; 
     min-height:100vh;
 }
 
@@ -156,15 +155,28 @@ body{
     color:#111;
 }
 
-.hero p{
-    font-size:5vw;
-    font-weight:600;
-    margin:12px 0;
-    color:#444;
+/* Desain untuk Subtitle (Tetap Bold & Tengah) */
+.hero-subtitle {
+    font-size: 5vw;
+    font-weight: 700;
+    margin: 10px 0 20px;
+    color: #222;
+}
+
+/* DESAIN BARU: Spesifik untuk Paragraf Panjang Supaya Rapi */
+.hero-desc {
+    font-size: 4vw;          /* Ukuran teks proposional untuk layar HP */
+    font-weight: 400;        /* Ketebalan normal, tidak tebal agar bersih */
+    line-height: 1.6;        /* Memberi spasi antar baris kalimat */
+    text-align: justify;     /* Membuat rata kanan-kiri */
+    color: #555;             /* Warna abu-abu gelap agar lebih nyaman di mata */
+    max-width: 500px;        /* Batas lebar maksimal teks */
+    margin: 0 auto;          /* Posisi box paragraf tetap di tengah */
+    padding: 0 10px;         /* Jarak teks dari tepi kiri-kanan layar HP */
 }
 
 /* ================= FOOTER ================= */
-footer{
+... {
     text-align:center;
     padding:24px;
     background:white;
@@ -188,8 +200,15 @@ footer{
         font-size:60px;
     }
 
-    .hero p{
-        font-size:28px;
+    .hero-subtitle{
+        font-size:26px;
+    }
+
+    /* Penyesuaian deskripsi saat dibuka di laptop */
+    .hero-desc{
+        font-size:16px;
+        line-height: 1.7;
+        padding: 0;
     }
 
     footer{
