@@ -1,13 +1,13 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:'Segoe UI', sans-serif;
-    background:#f4f4f4;
-    overflow-x:hidden;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
@@ -33,14 +33,13 @@ body{
     align-items: center;
 }
 
-/* STYLE TEXT BARU SESUAI GAMBAR KE-2 */
 .brand-title {
     display: flex;
     flex-direction: column;
     align-items: flex-end; 
     text-align: right;
     font-family: 'Impact', 'Arial Black', sans-serif; 
-    padding-left: 50px; /* Memberi ruang agar tidak tertutup tombol menu garis 3 */
+    padding-left: 50px;
 }
 
 .main-title {
@@ -61,134 +60,137 @@ body{
 }
 
 /* ================= TOMBOL GARIS 3 ================= */
-.menu-button{
-    position:fixed;
+.menu-button {
+    position: fixed;
     top: 10px; 
     left: 15px;
     width: 40px; 
     height: 40px;
     background: transparent; 
     border-radius: 8px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px; 
-    cursor:pointer;
-    z-index:1000;
-    transition:0.3s;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
 }
 
-.menu-button:hover{
-    transform:scale(1.1);
+.menu-button:hover {
+    transform: scale(1.1);
 }
 
-.menu-button span{
+.menu-button span {
     width: 22px; 
     height: 2px; 
-    background:#00d9ff;
-    border-radius:10px;
-    transition:0.4s;
+    background: #00d9ff;
+    border-radius: 10px;
+    transition: 0.4s;
 }
 
-.menu-button.active span:nth-child(1){
+.menu-button.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
 
-.menu-button.active span:nth-child(2){
-    opacity:0;
+.menu-button.active span:nth-child(2) {
+    opacity: 0;
 }
 
-.menu-button.active span:nth-child(3){
+.menu-button.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ================= OVERLAY ================= */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(4px);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:998;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 998;
 }
 
-.overlay.show{
-    opacity:1;
-    visibility:visible;
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* ================= SIDEBAR ================= */
-.sidebar{
-    position:fixed;
-    top:0;
-    left:-75%;
-    width:75%;
-    max-width:320px;
-    height:100vh;
-    background: rgba(15, 15, 20, 0.96);
-    backdrop-filter:blur(20px);
-    padding: 80px 20px 20px; 
-    transition: 0.5s cubic-bezier(.77,0,.18,1);
-    z-index:999;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 10px 0 30px rgba(0,0,0,0.35);
+/* ================= SIDEBAR (GAYA GITHUB FORMAL) ================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -75%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: #0d1117; /* Gelap formal ala GitHub */
+    backdrop-filter: blur(20px);
+    padding: 80px 10px 20px; 
+    transition: 0.4s cubic-bezier(.77,0,.18,1);
+    z-index: 999;
+    border-right: 1px solid #30363d; /* Garis tepi tipis minimalis */
+    box-shadow: 10px 0 30px rgba(0,0,0,0.2);
 }
 
-.sidebar.show{
-    left:0;
+.sidebar.show {
+    left: 0;
 }
 
-.sidebar a{
-    display:block;
-    text-decoration:none;
-    color:white;
-    font-size:20px;
-    font-weight:700;
-    padding:16px;
-    margin-bottom:14px;
-    border-radius:14px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition:0.3s;
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #c9d1d9; /* Warna abu-abu terang formal */
+    font-size: 14px; /* Ukuran teks kecil rata */
+    font-weight: 400; /* Font tipis bersih */
+    padding: 10px 16px; /* Jarak baris yang rapat dan simpel */
+    margin-bottom: 2px;
+    border-radius: 6px; /* Lengkungan sangat tipis saat di-hover saja */
+    background: transparent; /* Tanpa kolom background bawaan */
+    border: none;
+    transition: 0.2s;
 }
 
-.sidebar a:hover{
-    transform:translateX(8px);
-    background:#00d9ff;
-    border-color:#00d9ff;
+/* Efek Hover (Saat Disentuh) */
+.sidebar a:hover {
+    color: #58a6ff; /* Teks berubah menjadi biru soft */
+    background: rgba(255, 255, 255, 0.05); /* Efek sorot transparan tipis */
+    transform: none; /* Tetap formal tanpa geser kanan-kiri */
 }
 
-.sidebar .active{
-    background:white;
-    color:black;
-    border-color:white;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+/* Menu yang Sedang Aktif */
+.sidebar .active {
+    color: #ffffff !important; /* Teks jadi putih tegas */
+    font-weight: 600; /* Sedikit tebal sebagai penanda */
+    background: rgba(255, 255, 255, 0.07) !important; /* Highlight tipis rata */
+    border: none;
+    box-shadow: none; /* Menghapus efek glow/bercahaya */
 }
 
 /* ================= HERO ================= */
-.hero{
-    text-align:center;
-    padding: 100px 24px 40px; /* Padding dioptimalkan agar tidak mepet layar HP */
+.hero {
+    text-align: center;
+    padding: 100px 24px 40px; 
 }
 
-.hero-logo{
-    width:100%;
-    max-width:550px;
-    border-radius:16px;
-    margin-bottom:30px;
+.hero-logo {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 16px;
+    margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
-.hero h1{
+.hero h1 {
     font-size: 2rem; 
-    margin-bottom:10px;
-    color:#111;
+    margin-bottom: 10px;
+    color: #111;
 }
 
 .hero-subtitle {
@@ -205,32 +207,32 @@ body{
     color: #444;             
     max-width: 600px;        
     margin: 0 auto;          
-    text-align: left; /* Diubah ke left di mobile agar jarak antar kata rapi */    
+    text-align: left;     
     word-break: break-word;   
     hyphens: auto;            
 }
 
 /* ================= FOOTER ================= */
-footer{
-    text-align:center;
-    padding:20px;
-    background:white;
-    border-top:1px solid #ddd;
-    color:#777;
-    font-size:4vw;
+footer {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 4vw;
     width: 100%;
     margin-top: auto; 
 }
 
 /* ================= LAPTOP / RESPONSIVE ================= */
-@media(min-width:768px){
-    .sidebar{
-        width:320px;
-        left:-320px;
+@media(min-width:768px) {
+    .sidebar {
+        width: 320px;
+        left: -320px;
     }
 
-    .sidebar.show{
-        left:0;
+    .sidebar.show {
+        left: 0;
     }
 
     .main-title {
@@ -241,23 +243,23 @@ footer{
         font-size: 14px;
     }
 
-    .hero h1{
-        font-size:60px;
+    .hero h1 {
+        font-size: 60px;
     }
 
-    .hero-subtitle{
-        font-size:26px;
+    .hero-subtitle {
+        font-size: 26px;
     }
 
-    .hero-desc{
-        font-size:16px;
+    .hero-desc {
+        font-size: 16px;
         line-height: 1.7;
         padding: 0;
-        text-align: justify; /* Kembali menjadi justify saat di layar lebar */
+        text-align: justify; 
     }
 
-    footer{
-        font-size:14px;
+    footer {
+        font-size: 14px;
         padding: 16px;
     }
 }
