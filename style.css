@@ -4,10 +4,19 @@
     box-sizing:border-box;
 }
 
+/* KUNCI UTAMA: Membuat body menjadi container flex vertikal */
 body{
     font-family:'Segoe UI', sans-serif;
     background:#f4f4f4;
     overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Memastikan tinggi body minimal semuai tinggi layar HP */
+}
+
+/* Mengatur agar area konten mengambil semua sisa ruang yang ada */
+.main-content {
+    flex: 1;
 }
 
 /* ================= BATANG HITAM ATAS ================= */
@@ -137,8 +146,7 @@ body{
 /* ================= HERO ================= */
 .hero{
     text-align:center;
-    padding: 100px 20px 60px; 
-    min-height:100vh;
+    padding: 100px 20px 40px; /* Padding bawah sedikit dikurangi */
 }
 
 .hero-logo{
@@ -162,7 +170,6 @@ body{
     color: #222;
 }
 
-/* PARAGRAF DESKRIPSI (RATA KANAN KIRI LURUS PRECISI) */
 .hero-desc {
     font-size: 4vw;          
     font-weight: 400;        
@@ -171,22 +178,22 @@ body{
     max-width: 600px;        
     margin: 0 auto;          
     padding: 0 15px;         
-
-    /* Kunci utama agar pinggiran lurus datar (tidak bergelombang) */
     text-align: justify;     
-    text-justify: inter-word; /* Mengatur spasi antar kata agar lebih natural */
-    word-break: break-word;   /* Memutus kata panjang jika melebihi layar */
-    hyphens: auto;            /* Memotong suku kata otomatis memakai tanda hubung (-) jika mentok */
+    text-justify: inter-word; 
+    word-break: break-word;   
+    hyphens: auto;            
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER (TETAP DI TENGAH BAWAH) ================= */
 footer{
     text-align:center;
-    padding:24px;
+    padding:20px;
     background:white;
     border-top:1px solid #ddd;
     color:#777;
     font-size:4vw;
+    width: 100%;
+    margin-top: auto; /* Ini trik CSS agar footer otomatis nempel di paling bawah */
 }
 
 /* ================= LAPTOP ================= */
@@ -215,6 +222,7 @@ footer{
     }
 
     footer{
-        font-size:16px;
+        font-size:14px;
+        padding: 16px;
     }
 }
