@@ -2,86 +2,183 @@
 <html>
 <head>
     <title>testing</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; }
-        
-        /* Menu Navigasi - Diperbesar */
-        nav { background-color: #333; padding: 20px 10px; text-align: center; }
-        nav a { 
-            color: white; 
-            margin: 0 12px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 20px; /* Ukuran menu diperbesar */
-        }
-        
-        /* Area Abu-abu - Diperbesar ruangnya */
-        .hero { 
-            padding: 60px 20px; 
-            text-align: center; 
-            background-color: #f4f4f4; 
-        }
-        
-        /* Gambar miHoYo - Diperbesar maksimal di HP */
-        .hero-logo {
-            width: 95%;          /* Mengisi hampir penuh lebar layar HP */
-            max-width: 500px;    /* Batas maksimal agar tidak terlalu raksasa di laptop */
-            height: auto;
-            display: block;
-            margin: 0 auto 35px auto; /* Jarak bawah ke tulisan diperbanyak */
+
+        body{
+            margin:0;
+            font-family:sans-serif;
+            background:#f4f4f4;
         }
 
-        /* Tulisan Jepang - Diperbesar signifikan */
-        .hero h1 { 
-            font-size: 42px; 
-            margin-bottom: 20px; 
-            font-weight: bold;
+        /* ================= NAVBAR ================= */
+
+        nav{
+            background:#2f2f35;
+            padding:15px 10px;
         }
-        
-        /* Tulisan Sub-judul - Diperbesar */
-        .hero p { 
-            font-size: 24px; 
-            margin: 10px 0; 
-            color: #222; 
-            font-weight: 500;
+
+        .nav-container{
+            display:flex;
+            justify-content:center;
+            gap:10px;
+
+            /* tetap menyamping */
+            flex-wrap:nowrap;
         }
-        
-        /* Footer bawah */
-        footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 14px;
-            color: #666;
-            background-color: white; 
-            border-top: 1px solid #ddd;
+
+        .nav-container a{
+
+            background:#444;
+            color:white;
+
+            text-decoration:none;
+            font-weight:bold;
+
+            padding:12px 14px;
+
+            border-radius:10px;
+
+            border:2px solid #666;
+
+            font-size:4vw;
+
+            transition:0.3s;
         }
+
+        .nav-container a:hover{
+            background:#666;
+        }
+
+        /* halaman aktif */
+        .nav-container .active{
+            background:white;
+            color:black;
+            border:2px solid black;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero{
+
+            text-align:center;
+
+            padding:60px 20px;
+
+            min-height:100vh;
+        }
+
+        .hero-logo{
+
+            width:100%;
+            max-width:650px;
+
+            height:auto;
+
+            margin-bottom:40px;
+        }
+
+        .hero h1{
+
+            font-size:11vw;
+
+            margin-bottom:20px;
+        }
+
+        .hero p{
+
+            font-size:5vw;
+
+            font-weight:bold;
+
+            margin:15px 0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer{
+
+            text-align:center;
+
+            padding:20px;
+
+            background:white;
+
+            border-top:1px solid #ddd;
+
+            color:#666;
+
+            font-size:4vw;
+        }
+
+        /* ================= LAPTOP ================= */
+
+        @media (min-width:768px){
+
+            .nav-container a{
+                font-size:20px;
+                padding:14px 22px;
+            }
+
+            .hero h1{
+                font-size:60px;
+            }
+
+            .hero p{
+                font-size:28px;
+            }
+
+            footer{
+                font-size:16px;
+            }
+
+        }
+
     </style>
+
 </head>
 <body>
-    
+
+    <!-- NAVBAR -->
+
     <nav>
-        <a href="index.html">Home</a>
-        <a href="profil.html">Profil</a>
-        <a href="about.html">About Me</a>
-        <a href="galeri.html">Galeri</a>
+
+        <div class="nav-container">
+
+            <a href="index.html" class="active">Home</a>
+
+            <a href="profil.html">Profil</a>
+
+            <a href="about.html">About Me</a>
+
+            <a href="galeri.html">Galeri</a>
+
+        </div>
+
     </nav>
 
+    <!-- HERO -->
+
     <div class="hero">
+
         <img src="miHoYo.jpg" alt="miHoYo Logo" class="hero-logo">
-        
+
         <h1>いらっしゃいませ</h1>
+
         <p>Ra isa maca</p>
+
         <p>Halaman utama tempat nongkrong.</p>
+
     </div>
 
+    <!-- FOOTER -->
+
     <footer>
-        <p>&copy; Copyright by Rafa Aditya 2026</p>
+
+        &copy; Copyright by Rafa Aditya 2026
+
     </footer>
 
 </body>
