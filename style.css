@@ -1,137 +1,60 @@
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #f4f4f4;
-}
+<style>
 
-/* ================= NAVBAR ================= */
 nav {
-    background: #2f2f35;
-    padding: 10px 15px; 
-    position: relative;
-    z-index: 10;
+    background-color: #2f2f35;
+    padding: 15px 10px;
 }
 
-/* Ikon Titik Tiga */
-.menu-icon {
-    color: white;
-    font-size: 32px;
-    cursor: pointer;
-    display: inline-block;
-    user-select: none;
-}
-
-/* Container menu default (HP) -> Sembunyi & Turun ke bawah */
+/* wadah menu */
 .nav-container {
-    display: none; 
-    flex-direction: column; 
-    gap: 10px; 
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    width: 100%;
-    background: #2f2f35;
-    padding: 15px 0;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-}
-
-/* Munculkan menu saat tombol titik 3 diklik */
-.nav-container.show {
     display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    /* biar tetap satu baris */
+    flex-wrap: nowrap;
 }
 
+/* tombol menu */
 .nav-container a {
-    background: #444;
+
+    background-color: #444;
     color: white;
+
     text-decoration: none;
     font-weight: bold;
-    padding: 12px 15px; 
+
+    padding: 12px 14px;
+
     border-radius: 10px;
+
+    font-size: 4vw;
+
     border: 2px solid #666;
-    font-size: 18px; 
-    margin: 0 20px; 
+
     transition: 0.3s;
-    text-align: center;
 }
 
+/* efek disentuh */
 .nav-container a:hover {
-    background: #666;
+    background-color: #666;
 }
 
+/* halaman aktif */
 .nav-container .active {
-    background: white;
+    background-color: white;
     color: black;
     border: 2px solid black;
 }
 
-/* ================= HERO ================= */
-.hero {
-    text-align: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-}
+/* ukuran laptop */
+@media (min-width:768px){
 
-.hero-logo {
-    width: 100%;
-    max-width: 650px;
-    height: auto;
-    margin-bottom: 30px;
-}
-
-.hero h1 {
-    font-size: 11vw;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 5vw;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-/* ================= FOOTER ================= */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    border-top: 1px solid #ddd;
-    color: #666;
-    font-size: 4vw;
-}
-
-/* ================= RESPONSIVE LAPTOP VIEW ================= */
-@media (min-width: 768px) {
-    /* Sembunyiin titik 3 kalau di layar lebar */
-    .menu-icon { 
-        display: none; 
-    } 
-
-    /* Ubah susunan menu jadi horizontal menyamping lagi secara otomatis */
-    .nav-container {
-        display: flex;
-        flex-direction: row;
-        position: static; 
-        justify-content: center;
-        background: transparent;
-        padding: 5px 0;
-        box-shadow: none;
-        gap: 15px;
+    .nav-container a{
+        font-size:20px;
+        padding:14px 22px;
     }
 
-    .nav-container a { 
-        margin: 0; 
-        padding: 14px 22px; 
-    }
-    
-    .hero h1 { 
-        font-size: 60px; 
-    }
-    
-    .hero p { 
-        font-size: 28px; 
-    }
-    
-    footer { 
-        font-size: 16px; 
-    }
 }
+
+</style>
