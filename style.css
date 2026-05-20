@@ -130,7 +130,7 @@ body {
     width: 75%;
     max-width: 320px;
     height: 100vh;
-    background: #0d1117; /* Gelap formal ala GitHub */
+    background: #0d1117; 
     backdrop-filter: blur(20px);
     padding: 80px 10px 20px; 
     transition: 0.4s cubic-bezier(.77,0,.18,1);
@@ -144,7 +144,7 @@ body {
     left: 0;
 }
 
-/* Gaya Dasar untuk Link Utama dan Judul Dropdown */
+/* Mengatur semua link utama di dalam sidebar */
 .sidebar > a, 
 .sidebar summary {
     display: flex;
@@ -161,29 +161,25 @@ body {
     border: none;
     transition: 0.2s;
     cursor: pointer;
-    list-style: none; /* Hilangkan panah default bawaan HTML */
+    list-style: none; 
 }
 
-/* Sembunyikan panah default di browser Webkit (Chrome/Safari) */
 .sidebar summary::-webkit-details-marker {
     display: none;
 }
 
-/* Efek Hover Link Utama & Judul Dropdown */
 .sidebar > a:hover,
 .sidebar summary:hover {
     color: #58a6ff; 
     background: rgba(255, 255, 255, 0.05); 
 }
 
-/* Menu yang Sedang Aktif */
 .sidebar .active {
     color: #ffffff !important; 
     font-weight: 600; 
     background: rgba(255, 255, 255, 0.07) !important; 
 }
 
-/* Putar panah saat dropdown terbuka */
 .sidebar details[open] summary .arrow {
     transform: rotate(180deg);
 }
@@ -194,20 +190,19 @@ body {
     display: inline-block;
 }
 
-/* ================= ISI SUB-MENU DROPDOWN ================= */
+/* ================= SUB-MENU DROPDOWN ================= */
 .sidebar .dropdown-content {
     display: flex;
     flex-direction: column;
-    margin-left: 20px; /* Menjorok ke dalam */
-    padding-left: 0;
-    border-left: 1px solid #30363d; /* Garis vertikal estetis di kiri */
+    margin-left: 20px; 
+    border-left: 1px solid #30363d; 
     margin-top: 4px;
     margin-bottom: 10px;
 }
 
 .sidebar .dropdown-content a {
     text-decoration: none;
-    color: #8b949e; /* Warna abu-abu redup untuk anak menu */
+    color: #8b949e; 
     font-size: 13.5px;
     padding: 8px 16px;
     transition: 0.2s;
@@ -219,7 +214,6 @@ body {
     color: #58a6ff;
     background: transparent;
 }
-
 
 /* ================= HERO ================= */
 .hero {
