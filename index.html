@@ -2,34 +2,61 @@
 <html>
 <head>
     <title>testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
         body { font-family: sans-serif; margin: 0; padding: 0; }
-        nav { background-color: #333; padding: 15px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
         
+        /* Menu Navigasi - Diperbesar */
+        nav { background-color: #333; padding: 20px 10px; text-align: center; }
+        nav a { 
+            color: white; 
+            margin: 0 12px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 20px; /* Ukuran menu diperbesar */
+        }
+        
+        /* Area Abu-abu - Diperbesar ruangnya */
         .hero { 
-            padding: 40px 20px; 
+            padding: 60px 20px; 
             text-align: center; 
             background-color: #f4f4f4; 
         }
         
-        /* Pengaturan gambar miHoYo supaya besar dan proporsional di HP */
+        /* Gambar miHoYo - Diperbesar maksimal di HP */
         .hero-logo {
-            width: 85%;          /* Mengisi 85% lebar layar HP agar tidak kekecilan */
-            max-width: 380px;    /* Batas maksimal lebar gambar agar tidak kebesaran di laptop */
+            width: 95%;          /* Mengisi hampir penuh lebar layar HP */
+            max-width: 500px;    /* Batas maksimal agar tidak terlalu raksasa di laptop */
             height: auto;
             display: block;
-            margin: 0 auto 25px auto; /* Membuat gambar ke tengah dan mendorong tulisan di bawahnya */
+            margin: 0 auto 35px auto; /* Jarak bawah ke tulisan diperbanyak */
+        }
+
+        /* Tulisan Jepang - Diperbesar signifikan */
+        .hero h1 { 
+            font-size: 42px; 
+            margin-bottom: 20px; 
+            font-weight: bold;
         }
         
+        /* Tulisan Sub-judul - Diperbesar */
+        .hero p { 
+            font-size: 24px; 
+            margin: 10px 0; 
+            color: #222; 
+            font-weight: 500;
+        }
+        
+        /* Footer bawah */
         footer {
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
             text-align: center;
-            padding: 10px 0;
-            font-size: 12px;
+            padding: 15px 0;
+            font-size: 14px;
             color: #666;
             background-color: white; 
             border-top: 1px solid #ddd;
@@ -48,7 +75,7 @@
     <div class="hero">
         <img src="miHoYo.jpg" alt="miHoYo Logo" class="hero-logo">
         
-        <h1>いらっしゃいませ </h1>
+        <h1>いらっしゃいませ</h1>
         <p>Ra isa maca</p>
         <p>Halaman utama tempat nongkrong.</p>
     </div>
