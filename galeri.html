@@ -71,7 +71,7 @@
 
             justify-content:center;
 
-            z-index:990;
+            z-index:997; /* Diselaraskan dengan halaman lainnya */
 
             border-bottom:1px solid rgba(255,255,255,0.05);
 
@@ -141,7 +141,7 @@
 
             cursor:pointer;
 
-            z-index:1000;
+            z-index:10010; /* Berada di lapisan teratas agar tidak tertutup */
 
         }
 
@@ -158,22 +158,16 @@
 
         }
 
-        .menu-button.active span:nth-child(1){
-
-            transform:rotate(45deg) translate(5px,5px);
-
+        .menu-button.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg) !important;
         }
 
-        .menu-button.active span:nth-child(2){
-
-            opacity:0;
-
+        .menu-button.active span:nth-child(2) {
+            opacity: 0 !important;
         }
 
-        .menu-button.active span:nth-child(3){
-
-            transform:rotate(-45deg) translate(5px,-5px);
-
+        .menu-button.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg) !important;
         }
 
         /* ================= OVERLAY ================= */
@@ -184,9 +178,9 @@
 
             inset:0;
 
-            background:rgba(0,0,0,0.55);
+            background:rgba(0,0,0,0.45);
 
-            backdrop-filter:blur(3px);
+            backdrop-filter:blur(4px);
 
             opacity:0;
 
@@ -194,7 +188,7 @@
 
             transition:0.3s;
 
-            z-index:998;
+            z-index:10001;
 
         }
 
@@ -224,7 +218,7 @@
 
             transition:0.4s cubic-bezier(.77,0,.18,1);
 
-            z-index:999;
+            z-index:10005;
 
             overflow-y:auto;
 
@@ -788,7 +782,7 @@
 
             <div class="dropdown-content">
 
-                <a href="#">
+                <a href="origin.html">
                     Our Origin
                 </a>
 
