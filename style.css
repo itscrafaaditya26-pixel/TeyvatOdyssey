@@ -1,0 +1,90 @@
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* NAVBAR */
+    nav {
+        background-color: #333;
+        padding: 22px 10px;
+        text-align: center;
+    }
+
+    nav a {
+        color: white;
+        margin: 0 14px;
+        text-decoration: none;
+        font-weight: bold;
+
+        /* ukuran fleksibel */
+        font-size: 5vw;
+    }
+
+    /* HERO */
+    .hero {
+        padding: 70px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+
+        /* tinggi layar penuh */
+        min-height: 100vh;
+    }
+
+    /* LOGO */
+    .hero-logo {
+        width: 100%;
+        max-width: 650px;
+        height: auto;
+
+        display: block;
+        margin: 0 auto 40px auto;
+    }
+
+    /* JUDUL JEPANG */
+    .hero h1 {
+        font-size: 11vw;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    /* PARAGRAF */
+    .hero p {
+        font-size: 5vw;
+        margin: 14px 0;
+        color: #222;
+        font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+        width: 100%;
+        text-align: center;
+        padding: 18px 0;
+        font-size: 4vw;
+        color: #666;
+        background-color: white;
+        border-top: 1px solid #ddd;
+    }
+
+    /* KHUSUS LAPTOP */
+    @media (min-width: 768px) {
+
+        nav a {
+            font-size: 24px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+        }
+
+        .hero p {
+            font-size: 28px;
+        }
+
+        footer {
+            font-size: 16px;
+        }
+    }
+</style>
