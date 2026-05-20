@@ -4,17 +4,15 @@
     box-sizing:border-box;
 }
 
-/* KUNCI UTAMA: Membuat body menjadi container flex vertikal */
 body{
     font-family:'Segoe UI', sans-serif;
     background:#f4f4f4;
     overflow-x:hidden;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Memastikan tinggi body minimal semuai tinggi layar HP */
+    min-height: 100vh; 
 }
 
-/* Mengatur agar area konten mengambil semua sisa ruang yang ada */
 .main-content {
     flex: 1;
 }
@@ -30,6 +28,36 @@ body{
     backdrop-filter: blur(20px); 
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 997; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STYLE TEXT BARU SESUAI GAMBAR KE-2 */
+.brand-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    text-align: right;
+    font-family: 'Impact', 'Arial Black', sans-serif; 
+    padding-left: 50px; /* Memberi ruang agar tidak tertutup tombol menu garis 3 */
+}
+
+.main-title {
+    color: #ffffff;
+    font-size: 5vw; 
+    text-transform: uppercase; 
+    line-height: 1;
+    letter-spacing: 0.5px;
+}
+
+.sub-title {
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif; 
+    font-size: 3vw; 
+    font-weight: 300;
+    line-height: 1.2;
+    margin-top: 2px;
 }
 
 /* ================= TOMBOL GARIS 3 ================= */
@@ -146,45 +174,43 @@ body{
 /* ================= HERO ================= */
 .hero{
     text-align:center;
-    padding: 100px 20px 40px; /* Padding bawah sedikit dikurangi */
+    padding: 100px 24px 40px; /* Padding dioptimalkan agar tidak mepet layar HP */
 }
 
 .hero-logo{
     width:100%;
     max-width:550px;
     border-radius:16px;
-    margin-bottom:40px;
+    margin-bottom:30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 .hero h1{
-    font-size:11vw;
-    margin-bottom:20px;
+    font-size: 2rem; 
+    margin-bottom:10px;
     color:#111;
 }
 
 .hero-subtitle {
-    font-size: 5vw;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin: 10px 0 20px;
+    margin: 5px 0 20px;
     color: #222;
 }
 
 .hero-desc {
-    font-size: 4vw;          
+    font-size: 0.95rem;          
     font-weight: 400;        
     line-height: 1.6;        
     color: #444;             
     max-width: 600px;        
     margin: 0 auto;          
-    padding: 0 15px;         
-    text-align: justify;     
-    text-justify: inter-word; 
+    text-align: left; /* Diubah ke left di mobile agar jarak antar kata rapi */    
     word-break: break-word;   
     hyphens: auto;            
 }
 
-/* ================= FOOTER (TETAP DI TENGAH BAWAH) ================= */
+/* ================= FOOTER ================= */
 footer{
     text-align:center;
     padding:20px;
@@ -193,10 +219,10 @@ footer{
     color:#777;
     font-size:4vw;
     width: 100%;
-    margin-top: auto; /* Ini trik CSS agar footer otomatis nempel di paling bawah */
+    margin-top: auto; 
 }
 
-/* ================= LAPTOP ================= */
+/* ================= LAPTOP / RESPONSIVE ================= */
 @media(min-width:768px){
     .sidebar{
         width:320px;
@@ -205,6 +231,14 @@ footer{
 
     .sidebar.show{
         left:0;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .sub-title {
+        font-size: 14px;
     }
 
     .hero h1{
@@ -219,6 +253,7 @@ footer{
         font-size:16px;
         line-height: 1.7;
         padding: 0;
+        text-align: justify; /* Kembali menjadi justify saat di layar lebar */
     }
 
     footer{
