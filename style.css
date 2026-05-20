@@ -135,43 +135,91 @@ body {
     padding: 80px 10px 20px; 
     transition: 0.4s cubic-bezier(.77,0,.18,1);
     z-index: 999;
-    border-right: 1px solid #30363d; /* Garis tepi tipis minimalis */
+    border-right: 1px solid #30363d;
     box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+    overflow-y: auto;
 }
 
 .sidebar.show {
     left: 0;
 }
 
-.sidebar a {
-    display: block;
+/* Gaya Dasar untuk Link Utama dan Judul Dropdown */
+.sidebar > a, 
+.sidebar summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-decoration: none;
-    color: #c9d1d9; /* Warna abu-abu terang formal */
-    font-size: 14px; /* Ukuran teks kecil rata */
-    font-weight: 400; /* Font tipis bersih */
-    padding: 10px 16px; /* Jarak baris yang rapat dan simpel */
+    color: #c9d1d9;
+    font-size: 14px; 
+    font-weight: 400; 
+    padding: 10px 16px; 
     margin-bottom: 2px;
-    border-radius: 6px; /* Lengkungan sangat tipis saat di-hover saja */
-    background: transparent; /* Tanpa kolom background bawaan */
+    border-radius: 6px; 
+    background: transparent; 
     border: none;
     transition: 0.2s;
+    cursor: pointer;
+    list-style: none; /* Hilangkan panah default bawaan HTML */
 }
 
-/* Efek Hover (Saat Disentuh) */
-.sidebar a:hover {
-    color: #58a6ff; /* Teks berubah menjadi biru soft */
-    background: rgba(255, 255, 255, 0.05); /* Efek sorot transparan tipis */
-    transform: none; /* Tetap formal tanpa geser kanan-kiri */
+/* Sembunyikan panah default di browser Webkit (Chrome/Safari) */
+.sidebar summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Efek Hover Link Utama & Judul Dropdown */
+.sidebar > a:hover,
+.sidebar summary:hover {
+    color: #58a6ff; 
+    background: rgba(255, 255, 255, 0.05); 
 }
 
 /* Menu yang Sedang Aktif */
 .sidebar .active {
-    color: #ffffff !important; /* Teks jadi putih tegas */
-    font-weight: 600; /* Sedikit tebal sebagai penanda */
-    background: rgba(255, 255, 255, 0.07) !important; /* Highlight tipis rata */
-    border: none;
-    box-shadow: none; /* Menghapus efek glow/bercahaya */
+    color: #ffffff !important; 
+    font-weight: 600; 
+    background: rgba(255, 255, 255, 0.07) !important; 
 }
+
+/* Putar panah saat dropdown terbuka */
+.sidebar details[open] summary .arrow {
+    transform: rotate(180deg);
+}
+
+.sidebar summary .arrow {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+/* ================= ISI SUB-MENU DROPDOWN ================= */
+.sidebar .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px; /* Menjorok ke dalam */
+    padding-left: 0;
+    border-left: 1px solid #30363d; /* Garis vertikal estetis di kiri */
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.sidebar .dropdown-content a {
+    text-decoration: none;
+    color: #8b949e; /* Warna abu-abu redup untuk anak menu */
+    font-size: 13.5px;
+    padding: 8px 16px;
+    transition: 0.2s;
+    border-radius: 6px;
+    display: block;
+}
+
+.sidebar .dropdown-content a:hover {
+    color: #58a6ff;
+    background: transparent;
+}
+
 
 /* ================= HERO ================= */
 .hero {
