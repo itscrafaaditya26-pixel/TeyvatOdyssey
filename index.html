@@ -4,21 +4,23 @@
     <title>testing</title>
     <style>
         body { font-family: sans-serif; margin: 0; padding: 0; }
-        
-        /* Mengatur kontainer logo miHoYo agar rapi di tengah */
-        .logo-container {
-            text-align: center;
-            background-color: #000; /* Latar belakang hitam agar menyatu dengan logo */
-            padding: 15px 0;
-        }
-        .logo-container img {
-            max-width: 200px; /* Mengatur ukuran lebar gambar agar tidak kebesaran */
-            height: auto;
-        }
-
         nav { background-color: #333; padding: 15px; text-align: center; }
         nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        .hero { padding: 50px; text-align: center; background-color: #f4f4f4; }
+        
+        .hero { 
+            padding: 40px 20px; 
+            text-align: center; 
+            background-color: #f4f4f4; 
+        }
+        
+        /* Pengaturan gambar miHoYo supaya besar dan proporsional di HP */
+        .hero-logo {
+            width: 85%;          /* Mengisi 85% lebar layar HP agar tidak kekecilan */
+            max-width: 380px;    /* Batas maksimal lebar gambar agar tidak kebesaran di laptop */
+            height: auto;
+            display: block;
+            margin: 0 auto 25px auto; /* Membuat gambar ke tengah dan mendorong tulisan di bawahnya */
+        }
         
         footer {
             position: fixed;
@@ -36,10 +38,6 @@
 </head>
 <body>
     
-    <div class="logo-container">
-        <img src="1000336328.webp" alt="miHoYo Logo">
-    </div>
-  
     <nav>
         <a href="index.html">Home</a>
         <a href="profil.html">Profil</a>
@@ -48,6 +46,8 @@
     </nav>
 
     <div class="hero">
+        <img src="1000336328.webp" alt="miHoYo Logo" class="hero-logo">
+        
         <h1>いらっしゃいませ </h1>
         <p>Ra isa maca</p>
         <p>Halaman utama tempat nongkrong.</p>
