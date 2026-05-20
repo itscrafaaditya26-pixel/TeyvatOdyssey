@@ -10,56 +10,53 @@ body{
     overflow-x:hidden;
 }
 
-/* ================= BATANG HITAM ATAS ================= */
+/* ================= BATANG HITAM ATAS (SEUKURAN APLIKASI) ================= */
 .top-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 90px; /* Tinggi batang hitam */
-    background: rgba(15, 15, 20, 0.96); /* Warna hitam matching dengan sidebar */
-    backdrop-filter: blur(20px); /* Efek blur kaca */
+    height: 60px; /* Tinggi dikecilkan jadi 60px agar pas seukuran top bar aplikasi */
+    background: rgba(20, 20, 25, 0.96); 
+    backdrop-filter: blur(20px); 
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 997; /* Di bawah tombol menu (1000) & sidebar (999) */
+    z-index: 997; 
 }
 
-/* ================= TOMBOL GARIS 3 ================= */
+/* ================= TOMBOL GARIS 3 (DISESUAIKAN) ================= */
 .menu-button{
     position:fixed;
-    top:15px; /* Disesuaikan agar pas di tengah top-bar */
-    left:20px;
-    width:60px;
-    height:60px;
-    background:rgba(255, 255, 255, 0.08); /* Dibuat agak transparan karena background sudah hitam */
-    border-radius:18px;
+    top: 10px; /* 10px dari atas agar pas di tengah vertikal (10px + 40px + 10px = 60px) */
+    left: 15px;
+    width: 40px; /* Ukuran kotak tombol diperkecil jadi 40px */
+    height: 40px;
+    background: transparent; /* Dibuat transparan murni seperti tombol menu aplikasi */
+    border-radius: 8px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    gap:6px;
+    gap: 5px; /* Jarak antar garis sedikit dirapatkan */
     cursor:pointer;
     z-index:1000;
-    backdrop-filter:blur(12px);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
     transition:0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-button:hover{
-    transform:scale(1.05);
+    transform:scale(1.1);
 }
 
 .menu-button span{
-    width:28px;
-    height:3px;
+    width: 22px; /* Lebar garis disesuaikan dengan tombol yang lebih kecil */
+    height: 2px; /* Tebal garis dibuat lebih minimalis */
     background:#00d9ff;
-    border-radius:20px;
+    border-radius:10px;
     transition:0.4s;
 }
 
-/* Animasi membentuk huruf X */
+/* Animasi X untuk ukuran tombol baru */
 .menu-button.active span:nth-child(1){
-    transform: rotate(45deg) translate(6px,6px);
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
 .menu-button.active span:nth-child(2){
@@ -67,7 +64,7 @@ body{
 }
 
 .menu-button.active span:nth-child(3){
-    transform: rotate(-45deg) translate(7px,-7px);
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ================= OVERLAY ================= */
@@ -100,7 +97,7 @@ body{
     height:100vh;
     background: rgba(15, 15, 20, 0.96);
     backdrop-filter:blur(20px);
-    padding:100px 20px;
+    padding: 80px 20px 20px; /* Padding atas disesuaikan */
     transition: 0.5s cubic-bezier(.77,0,.18,1);
     z-index:999;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
@@ -115,11 +112,11 @@ body{
     display:block;
     text-decoration:none;
     color:white;
-    font-size:22px;
+    font-size:20px;
     font-weight:700;
-    padding:18px;
-    margin-bottom:16px;
-    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    border-radius:14px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition:0.3s;
@@ -141,7 +138,7 @@ body{
 /* ================= HERO ================= */
 .hero{
     text-align:center;
-    padding: 140px 20px 60px; /* Padding top ditambah sedikit agar tidak tertutup top-bar */
+    padding: 100px 20px 60px; /* Jarak atas disesuaikan menjadi 100px agar pas di bawah top-bar baru */
     min-height:100vh;
 }
 
@@ -176,7 +173,7 @@ footer{
     font-size:4vw;
 }
 
-/* ================= MEDIA QUERIES (LAPTOP) ================= */
+/* ================= LAPTOP ================= */
 @media(min-width:768px){
     .sidebar{
         width:320px;
