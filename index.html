@@ -2,121 +2,15 @@
 <html>
 <head>
     <title>testing</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: sans-serif;
-            background: #f4f4f4;
-        }
-
-        /* ================= NAVBAR ================= */
-        nav {
-            background: #2f2f35;
-            padding: 12px 8px; /* Sedikit dikurangi ruang atas-bawahnya */
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            gap: 6px; /* Jarak antar tombol diperkecil di HP agar muat satu baris */
-            flex-wrap: nowrap; /* Memaksa semua menu tetap satu baris */
-        }
-
-        .nav-container a {
-            background: #444;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 10px; /* Ukuran padding disesuaikan agar muat menyamping */
-            border-radius: 10px;
-            border: 2px solid #666;
-            font-size: 3.8vw; /* Sedikit disesuaikan skala font-nya */
-            white-space: nowrap; /* KUNCI: Mencegah tulisan menu patah/turun ke bawah */
-            transition: 0.3s;
-        }
-
-        .nav-container a:hover {
-            background: #666;
-        }
-
-        /* halaman aktif */
-        .nav-container .active {
-            background: white;
-            color: black;
-            border: 2px solid black;
-        }
-
-        /* ================= HERO ================= */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            min-height: 100vh;
-        }
-
-        .hero-logo {
-            width: 100%;
-            max-width: 650px;
-            height: auto;
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 11vw;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 5vw;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        /* ================= FOOTER ================= */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #ddd;
-            color: #666;
-            font-size: 4vw;
-        }
-
-        /* ================= RESPONSIVE (LAPTOP/TABLET) ================= */
-        @media (min-width: 768px) {
-            nav {
-                padding: 15px 10px;
-            }
-
-            .nav-container {
-                gap: 15px; /* Jarak menu dikembalikan longgar saat di laptop */
-            }
-
-            .nav-container a {
-                font-size: 18px;
-                padding: 14px 22px;
-            }
-
-            .hero h1 {
-                font-size: 60px;
-            }
-
-            .hero p {
-                font-size: 28px;
-            }
-
-            footer {
-                font-size: 16px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <div class="nav-container">
+        <div class="menu-icon" onclick="toggleMenu()">&#8942;</div>
+
+        <div class="nav-container" id="navMenu">
             <a href="index.html" class="active">Home</a>
             <a href="profil.html">Profil</a>
             <a href="about.html">About Me</a>
@@ -134,6 +28,13 @@
     <footer>
         &copy; Copyright by Rafa Aditya 2026
     </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            menu.classList.toggle("show");
+        }
+    </script>
 
 </body>
 </html>
