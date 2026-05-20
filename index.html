@@ -1,309 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>testing</title>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            font-family:Segoe UI, sans-serif;
-            background:#f4f4f4;
-            overflow-x:hidden;
-        }
-
-        /* ================= TOMBOL GARIS 3 ================= */
-
-        .menu-button{
-
-            position:fixed;
-
-            top:20px;
-            left:20px;
-
-            width:55px;
-            height:55px;
-
-            background:#1f1f25;
-
-            border-radius:14px;
-
-            display:flex;
-            flex-direction:column;
-
-            justify-content:center;
-            align-items:center;
-
-            gap:6px;
-
-            cursor:pointer;
-
-            z-index:1000;
-
-            box-shadow:0 6px 20px rgba(0,0,0,0.25);
-        }
-
-        .menu-button span{
-
-            width:26px;
-            height:3px;
-
-            background:#00d9ff;
-
-            border-radius:10px;
-
-            transition:0.3s;
-        }
-
-        /* ================= SIDEBAR ================= */
-
-        .sidebar{
-
-            position:fixed;
-
-            top:0;
-            left:-70%;
-
-            width:70%;
-            height:100vh;
-
-            background:#1b1b22;
-
-            padding:100px 20px;
-
-            transition:0.4s ease;
-
-            z-index:999;
-
-            box-shadow:8px 0 30px rgba(0,0,0,0.4);
-        }
-
-        /* muncul dari samping */
-        .sidebar.show{
-            left:0;
-        }
-
-        /* menu */
-        .sidebar a{
-
-            display:block;
-
-            background:#2d2d35;
-
-            color:white;
-
-            text-decoration:none;
-
-            font-size:24px;
-
-            font-weight:bold;
-
-            padding:18px;
-
-            margin-bottom:15px;
-
-            border-radius:14px;
-
-            border:2px solid #444;
-
-            transition:0.3s;
-        }
-
-        .sidebar a:hover{
-            background:#00d9ff;
-            border-color:#00d9ff;
-        }
-
-        /* halaman aktif */
-        .sidebar .active{
-
-            background:white;
-            color:black;
-            border-color:white;
-        }
-
-        /* overlay hitam */
-        .overlay{
-
-            position:fixed;
-
-            top:0;
-            left:0;
-
-            width:100%;
-            height:100vh;
-
-            background:rgba(0,0,0,0.4);
-
-            opacity:0;
-            visibility:hidden;
-
-            transition:0.3s;
-
-            z-index:998;
-        }
-
-        .overlay.show{
-
-            opacity:1;
-            visibility:visible;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero{
-
-            text-align:center;
-
-            padding:120px 20px 60px;
-
-            min-height:100vh;
-        }
-
-        .hero-logo{
-
-            width:100%;
-            max-width:550px;
-
-            border-radius:14px;
-
-            margin-bottom:40px;
-        }
-
-        .hero h1{
-
-            font-size:11vw;
-
-            margin-bottom:20px;
-        }
-
-        .hero p{
-
-            font-size:5vw;
-
-            margin:10px 0;
-
-            font-weight:bold;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer{
-
-            text-align:center;
-
-            padding:20px;
-
-            background:white;
-
-            border-top:1px solid #ddd;
-
-            color:#666;
-
-            font-size:4vw;
-        }
-
-        /* ================= LAPTOP ================= */
-
-        @media(min-width:768px){
-
-            .sidebar{
-                width:320px;
-                left:-320px;
-            }
-
-            .sidebar.show{
-                left:0;
-            }
-
-            .hero h1{
-                font-size:60px;
-            }
-
-            .hero p{
-                font-size:28px;
-            }
-
-            footer{
-                font-size:16px;
-            }
-
-        }
-
-    </style>
-
+    <title>testing</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- TOMBOL GARIS 3 -->
+    <div class="top-bar"></div>
 
     <div class="menu-button" onclick="toggleMenu()">
-
         <span></span>
         <span></span>
         <span></span>
-
     </div>
-
-    <!-- OVERLAY -->
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- SIDEBAR -->
-
     <div class="sidebar" id="sidebar">
-
         <a href="index.html" class="active">Home</a>
-
         <a href="profil.html">Profil</a>
-
         <a href="about.html">About Me</a>
-
         <a href="galeri.html">Galeri</a>
-
     </div>
-
-    <!-- HERO -->
 
     <div class="hero">
-
-        <img src="miHoYo.jpg" class="hero-logo">
-
+        <img src="miHoYo.jpg" class="hero-logo" alt="Logo">
         <h1>いらっしゃいませ</h1>
-
         <p>Ra isa maca</p>
-
         <p>Halaman utama tempat nongkrong.</p>
-
     </div>
 
-    <!-- FOOTER -->
-
     <footer>
-
         &copy; Copyright by Rafa Aditya 2026
-
     </footer>
 
-    <!-- SCRIPT -->
-
     <script>
-
         function toggleMenu(){
-
+            // Menampilkan/menyembunyikan sidebar dan overlay
             document.getElementById("sidebar").classList.toggle("show");
-
             document.getElementById("overlay").classList.toggle("show");
-
+            
+            // Mengubah garis 3 menjadi ikon X (sesuai animasi CSS)
+            document.querySelector(".menu-button").classList.toggle("active");
         }
-
     </script>
 
 </body>
