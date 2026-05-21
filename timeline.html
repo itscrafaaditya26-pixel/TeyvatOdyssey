@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Game Studio - Timeline</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#ffffff;
+            overflow-x:hidden;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        /* =========================================================
+           FIX NAVIGASI
+        ========================================================= */
+
+        .sidebar{
+            z-index:10005 !important;
+        }
+
+        .overlay{
+            z-index:10001 !important;
+        }
+
+        .menu-button{
+            position:fixed !important;
+            top:10px !important;
+            left:15px !important;
+
+            z-index:10010 !important;
+
+            display:flex !important;
+            flex-direction:column !important;
+            justify-content:center !important;
+            align-items:center !important;
+
+            gap:5px !important;
+
+            width:40px !important;
+            height:40px !important;
+
+            background:transparent !important;
+
+            cursor:pointer !important;
+        }
+
+        .menu-button span{
+            display:block !important;
+
+            width:22px !important;
+            height:2px !important;
+
+            background:#00d9ff !important;
+
+            border-radius:10px !important;
+
+            transition:0.4s !important;
+        }
+
+        .menu-button.active span:nth-child(1){
+            transform:translateY(7px) rotate(45deg) !important;
+        }
+
+        .menu-button.active span:nth-child(2){
+            opacity:0 !important;
+        }
+
+        .menu-button.active span:nth-child(3){
+            transform:translateY(-7px) rotate(-45deg) !important;
+        }
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .top-bar{
+            position:fixed;
+            top:0;
+            left:0;
+
+            width:100%;
+            height:60px;
+
+            background:rgba(20,20,25,0.96);
+
+            z-index:10008;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            border-bottom:1px solid rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(8px);
+        }
+
+        .brand-title{
+            display:flex;
+            flex-direction:column;
+            align-items:flex-end;
+            text-align:right;
+        }
+
+        .main-title{
+            color:#ffffff;
+            font-family:'Impact',sans-serif;
+            font-size:20px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+
+        .sub-title{
+            color:#ffffff;
+            font-size:12px;
+            font-weight:300;
+        }
+
+        /* =========================================================
+           BANNER
+        ========================================================= */
+
+        .top-banner-zone{
+            position:relative;
+
+            width:100%;
+            height:35vh;
+
+            background:#0d1117;
+
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+
+            padding:60px 24px 20px;
+
+            overflow:hidden;
+        }
+
+        .top-banner-zone::before{
+            content:'';
+
+            position:absolute;
+            inset:0;
+
+            background:
+            radial-gradient(
+                circle at center,
+                rgba(0,217,255,0.12),
+                transparent 65%
+            );
+        }
+
+        .timeline-header{
+            position:relative;
+            z-index:2;
+        }
+
+        .timeline-header h1{
+            font-size:2.5rem;
+            color:#ffffff;
+
+            margin-bottom:10px;
+
+            letter-spacing:1px;
+        }
+
+        .timeline-header p{
+            color:#8b949e;
+            font-size:0.95rem;
+        }
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .main-content-zone{
+            background:#ffffff;
+
+            position:relative;
+
+            z-index:5;
+
+            padding:60px 24px;
+
+            box-shadow:0 -15px 30px rgba(0,0,0,0.08);
+
+            overflow:hidden;
+        }
+
+        .timeline-container{
+            max-width:750px;
+            margin:0 auto;
+
+            position:relative;
+
+            z-index:10;
+        }
+
+        /* =========================================================
+           FOTO WATERMARK
+        ========================================================= */
+
+        .bg-watermark-photo{
+            position:absolute;
+
+            pointer-events:none;
+
+            z-index:1;
+
+            height:auto;
+        }
+
+        /* HATSUNE */
+
+        .photo-hatsune{
+            width:420px;
+
+            top:120px;
+
+            right:50%;
+            transform:translateX(50%);
+
+            opacity:0.50;
+
+            z-index:0;
+
+            filter:blur(0.3px);
+        }
+
+        /* HIJAU */
+
+        .photo-hijau{
+            left:-30px;
+            top:20px;
+
+            width:180px;
+
+            opacity:0.75;
+        }
+
+        /* MERAH (Dipindahkan ke Kanan Atas) */
+
+        .photo-merah{
+            right:-15px;
+            top:65px;
+
+            width:190px;
+
+            opacity:0.72;
+        }
+
+        /* KUNING */
+
+        .photo-kuning{
+            left:-40px;
+            bottom:30px;
+
+            width:210px;
+
+            opacity:0.75;
+        }
+
+        /* BIRU */
+
+        .photo-biru{
+            right:-10px;
+            bottom:-20px;
+
+            width:230px;
+
+            opacity:0.75;
+        }
+
+        /* =========================================================
+           MAP ROUTE
+        ========================================================= */
+
+        .map-route{
+            position:relative;
+            padding-left:45px;
+        }
+
+        .map-route::before{
+            content:'';
+
+            position:absolute;
+
+            top:15px;
+            bottom:15px;
+            left:20px;
+
+            width:2px;
+
+            background:#e1e4e8;
+
+            z-index:1;
+        }
+
+        /* =========================================================
+           TIMELINE ROW
+        ========================================================= */
+
+        .timeline-row{
+            position:relative;
+
+            z-index:12;
+
+            margin-bottom:45px;
+
+            display:flex;
+            justify-content:flex-start;
+            align-items:flex-start;
+
+            min-height:46px;
+        }
+
+        /* =========================================================
+           CAPSULE
+        ========================================================= */
+
+        .capsule{
+            position:relative;
+
+            background:#0d1117;
+
+            border:2px solid #00d9ff;
+
+            border-radius:30px;
+
+            width:130px;
+            height:46px;
+
+            cursor:pointer;
+
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+
+            overflow:hidden;
+
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+
+            transition:
+            width 0.4s cubic-bezier(0.4,0,0.2,1),
+            height 0.4s cubic-bezier(0.4,0,0.2,1),
+            border-radius 0.4s ease,
+            background 0.4s ease,
+            border-color 0.4s ease;
+        }
+
+        .capsule:hover{
+            box-shadow:0 6px 20px rgba(0,217,255,0.25);
+        }
+
+        /* =========================================================
+           ROTATING
+        ========================================================= */
+
+        .capsule.rotating{
+            width:46px;
+            height:130px;
+
+            background:#00d9ff;
+
+            border-color:#00d9ff;
+        }
+
+        /* =========================================================
+           EXPANDED
+        ========================================================= */
+
+        .capsule.expanded{
+            width:100%;
+            max-width:600px;
+
+            height:auto;
+            min-height:180px;
+
+            background:#ffffff;
+
+            border-color:#e1e4e8;
+
+            border-radius:12px;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.06);
+
+            cursor:default;
+
+            align-items:flex-start;
+            justify-content:flex-start;
+        }
+
+        /* =========================================================
+           YEAR LABEL
+        ========================================================= */
+
+        .year-label{
+            position:absolute;
+
+            color:#00d9ff;
+
+            font-weight:800;
+            font-size:1.15rem;
+
+            letter-spacing:1px;
+
+            transition:
+            transform 0.4s ease,
+            opacity 0.3s ease;
+
+            pointer-events:none;
+        }
+
+        .capsule.rotating .year-label{
+            transform:rotate(90deg) scale(0.8);
+            opacity:0;
+        }
+
+        .capsule.expanded .year-label{
+            display:none;
+        }
+
+        /* =========================================================
+           EXPANDED CONTENT
+        ========================================================= */
+
+        .expanded-content{
+            position:relative;
+
+            width:100%;
+
+            padding:24px;
+
+            opacity:0;
+            visibility:hidden;
+
+            transform:translateY(10px);
+
+            transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+
+            display:flex;
+            flex-direction:column;
+
+            text-align:left;
+        }
+
+        .capsule.expanded .expanded-content{
+            opacity:1;
+            visibility:visible;
+
+            transform:translateY(0);
+
+            transition-delay:0.35s;
+        }
+
+        /* =========================================================
+           BADGE
+        ========================================================= */
+
+        .badge{
+            font-size:0.75rem;
+            font-weight:700;
+
+            color:#ffffff;
+
+            background:#0d1117;
+
+            padding:4px 10px;
+
+            border-radius:4px;
+
+            align-self:flex-start;
+
+            margin-bottom:12px;
+
+            letter-spacing:0.5px;
+
+            cursor:pointer;
+
+            transition:background 0.2s;
+        }
+
+        .badge:hover{
+            background:#ff3b30;
+        }
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .expanded-content h3{
+            font-size:1.25rem;
+
+            color:#111;
+
+            margin-bottom:8px;
+
+            font-weight:700;
+        }
+
+        .expanded-content p{
+            font-size:0.95rem;
+
+            color:#444;
+
+            line-height:1.6;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (min-width:768px){
+
+            .top-banner-zone{
+                height:33vh;
+            }
+
+            .timeline-header h1{
+                font-size:3rem;
+            }
+
+            .photo-hatsune{
+                width:500px;
+            }
+
+            .photo-hijau{
+                width:260px;
+                left:-80px;
+            }
+
+            .photo-merah{
+                width:260px;
+                right:30px;
+                top:80px;
+            }
+
+            .photo-kuning{
+                width:290px;
+                left:-90px;
+            }
+
+            .photo-biru{
+                width:330px;
+                right:-50px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-button" id="menuToggleBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <header class="top-bar">
+
+        <div class="brand-title">
+            <span class="main-title">DEVELOPER WEBSITE</span>
+            <span class="sub-title">Rafa Rafka</span>
+        </div>
+
+    </header>
+
+    <div class="overlay" id="menuOverlay"></div>
+
+    <div class="sidebar" id="sideNavigation">
+
+        <a href="index.html">Home</a>
+
+        <details class="dropdown" open>
+
+            <summary class="active">
+                About HoYoverse
+                <span class="arrow">▼</span>
+            </summary>
+
+            <div class="dropdown-content">
+                <a href="origin.html">Our Origin</a>
+
+                <a href="timeline.html"
+                style="color:#58a6ff;font-weight:600;">
+                Timeline
+                </a>
+            </div>
+
+        </details>
+
+        <details class="dropdown">
+
+            <summary>
+                The Universe
+                <span class="arrow">▼</span>
+            </summary>
+
+            <div class="dropdown-content">
+                <a href="#">The Masterpieces</a>
+                <a href="#">Tech & Innovation</a>
+                <a href="galeri.html">Media Gallery</a>
+            </div>
+
+        </details>
+
+        <a href="#">Disclaimer & Credit</a>
+        <a href="profil.html">About Me</a>
+
+    </div>
+
+    <div class="top-banner-zone">
+
+        <div class="timeline-header">
+
+            <h1>Journey Timeline</h1>
+
+            <p>
+                Jejak kronologis langkah besar studio dari masa ke masa.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="main-content-zone">
+
+        <img src="Hatsune.jpg"
+        alt="Hatsune Miku"
+        class="bg-watermark-photo photo-hatsune">
+
+        <img src="hijau.jpg"
+        alt="Photo Hijau"
+        class="bg-watermark-photo photo-hijau">
+
+        <img src="merah.jpg"
+        alt="Photo Merah"
+        class="bg-watermark-photo photo-merah">
+
+        <img src="kuning.jpg"
+        alt="Photo Kuning"
+        class="bg-watermark-photo photo-kuning">
+
+        <img src="biru.jpg"
+        alt="Photo Biru"
+        class="bg-watermark-photo photo-biru">
+
+        <div class="timeline-container">
+
+            <div class="map-route">
+
+                <div class="timeline-row">
+
+                    <div class="capsule"
+                    onclick="toggleCapsule(this)">
+
+                        <div class="year-label">2011</div>
+
+                        <div class="expanded-content">
+
+                            <span class="badge"
+                            onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">
+                            TUTUP ×
+                            </span>
+
+                            <h3>Pendirian miHoYo</h3>
+
+                            <p>
+                                Tiga mahasiswa Universitas Shanghai Jiao Tong
+                                mendirikan studio kecil di asrama kampus
+                                dengan modal slogan legendaris
+                                "Tech Otakus Save the World".
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-row">
+
+                    <div class="capsule"
+                    onclick="toggleCapsule(this)">
+
+                        <div class="year-label">2012</div>
+
+                        <div class="expanded-content">
+
+                            <span class="badge"
+                            onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">
+                            TUTUP ×
+                            </span>
+
+                            <h3>Lahirnya Era Honkai</h3>
+
+                            <p>
+                                Peluncuran seri perdana Houkai Gakuen
+                                sukses meletakkan batu pertama
+                                pembangunan semesta fiksi ilmiah anime.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-row">
+
+                    <div class="capsule"
+                    onclick="toggleCapsule(this)">
+
+                        <div class="year-label">2016</div>
+
+                        <div class="expanded-content">
+
+                            <span class="badge"
+                            onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">
+                            TUTUP ×
+                            </span>
+
+                            <h3>Honkai Impact 3rd</h3>
+
+                            <p>
+                                Langkah revolusioner mengadopsi
+                                grafis aksi 3D penuh pada perangkat seluler,
+                                menaikkan kelas studio menjadi
+                                pengembang papan atas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-row">
+
+                    <div class="capsule"
+                    onclick="toggleCapsule(this)">
+
+                        <div class="year-label">2020</div>
+
+                        <div class="expanded-content">
+
+                            <span class="badge"
+                            onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">
+                            TUTUP ×
+                            </span>
+
+                            <h3>Genshin Impact Global Launch</h3>
+
+                            <p>
+                                Peluncuran mahakarya dunia terbuka
+                                lintas platform yang mencatatkan
+                                rekor dunia baru serta memicu
+                                gelombang popularitas global.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-row">
+
+                    <div class="capsule"
+                    onclick="toggleCapsule(this)">
+
+                        <div class="year-label">2023</div>
+
+                        <div class="expanded-content">
+
+                            <span class="badge"
+                            onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">
+                            TUTUP ×
+                            </span>
+
+                            <h3>Rebranding & Star Rail</h3>
+
+                            <p>
+                                Transformasi identitas global menjadi
+                                HoYoverse serta peluncuran
+                                Honkai: Star Rail membawa studio
+                                memasuki era ekspansi internasional baru.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // NAVIGATION
+
+        const menuToggleBtn =
+        document.getElementById('menuToggleBtn');
+
+        const sideNav =
+        document.getElementById('sideNavigation');
+
+        const overlay =
+    
+        document.getElementById('menuOverlay');
+
+        function toggleMenu(){
+
+            menuToggleBtn.classList.toggle('active');
+
+            sideNav.classList.toggle('show');
+
+            overlay.classList.toggle('show');
+        }
+
+        menuToggleBtn.addEventListener(
+            'click',
+            toggleMenu
+        );
+
+        overlay.addEventListener(
+            'click',
+            toggleMenu
+        );
+
+        // CAPSULE SYSTEM
+
+        function toggleCapsule(element){
+
+            if(element.classList.contains('expanded'))
+            return;
+
+            document.querySelectorAll('.capsule.expanded')
+            .forEach(cap=>{
+
+                closeCapsule(cap);
+
+            });
+
+            element.classList.add('rotating');
+
+            setTimeout(()=>{
+
+                element.classList.add('expanded');
+
+            },400);
+        }
+
+        function closeCapsule(element){
+
+            element.classList.remove('expanded');
+
+            element.classList.add('rotating');
+
+            setTimeout(()=>{
+
+                element.classList.remove('rotating');
+
+            },300);
+        }
+
+    </script>
+
+</body>
+</html>
