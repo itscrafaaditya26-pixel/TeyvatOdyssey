@@ -77,7 +77,7 @@ body{
     transform:translateY(-7px) rotate(-45deg) !important;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER (DIJAMIN LEBIH TERANG & TAJAM) ================= */
 
 .top-banner-zone{
     position:relative;
@@ -85,7 +85,8 @@ body{
     width:100%;
     height:34vh;
 
-    background-image: linear-gradient(rgba(245, 247, 251, 0.7), rgba(245, 247, 251, 0.7)), url('background.jpg');
+    /* Opacity diturunkan ke 0.35 agar background jauh lebih cerah dan kelihatan jelas */
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('background.jpg');
 
     background-size:cover;
     background-position:center;
@@ -106,9 +107,9 @@ body{
 
     inset:0;
 
-    background:rgba(0,0,0,0.45);
-
-    backdrop-filter:blur(1px);
+    backdrop-filter: none; 
+    
+    background: transparent;
 }
 
 .masterpiece-header{
@@ -124,14 +125,20 @@ body{
     margin-bottom:10px;
 
     letter-spacing:1px;
+
+    /* Menambahkan bayangan hitam agar teks putih menonjol meskipun background terang */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .masterpiece-header p{
-    color:#d7dce2;
+    color:#ffffff; /* Diubah ke putih penuh agar kontras */
 
     font-size:0.95rem;
 
     max-width:700px;
+
+    /* Efek bayangan tipis untuk deskripsi banner */
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
 }
 
 /* ================= CONTENT ================= */
@@ -193,7 +200,7 @@ body{
     border-bottom:3px solid #00d9ff;
 }
 
-/* ================= FOTO APK (OVERLAP DI GARIS HIJAU) ================= */
+/* ================= FOTO APK ================= */
 
 .apk-logo{
     position:absolute;
@@ -462,26 +469,6 @@ melawan zombie dalam nuansa anime futuristik.
 </div>
 
 <div class="game-card">
-<div class="game-image" style="background-image:url('foto3.jpg');">
-    <div class="apk-logo">
-        <img src="apk3.jpg">
-    </div>
-</div>
-<div class="game-info">
-<span class="game-genre">Open World RPG</span>
-<h2>Genshin Impact</h2>
-<p>
-Mahakarya open world Teyvat dengan eksplorasi bebas,
-elemen combat, dan visual anime modern.
-</p>
-<div class="game-meta">
-<div>Rilis: <strong>2020</strong></div>
-<div>Platform: <strong>All Platform</strong></div>
-</div>
-</div>
-</div>
-
-<div class="game-card">
 <div class="game-image" style="background-image:url('foto4.jpg');">
     <div class="apk-logo">
         <img src="apk4.jpg">
@@ -497,6 +484,26 @@ sistem combo modern yang menjadi ikon miHoYo.
 <div class="game-meta">
 <div>Rilis: <strong>2016</strong></div>
 <div>Platform: <strong>PC & Mobile</strong></div>
+</div>
+</div>
+</div>
+
+<div class="game-card">
+<div class="game-image" style="background-image:url('foto3.jpg');">
+    <div class="apk-logo">
+        <img src="apk3.jpg">
+    </div>
+</div>
+<div class="game-info">
+<span class="game-genre">Open World RPG</span>
+<h2>Genshin Impact</h2>
+<p>
+Mahakarya open world Teyvat dengan eksplorasi bebas,
+elemen combat, dan visual anime modern.
+</p>
+<div class="game-meta">
+<div>Rilis: <strong>2020</strong></div>
+<div>Platform: <strong>All Platform</strong></div>
 </div>
 </div>
 </div>
@@ -544,7 +551,8 @@ strategi turn-based dan dunia sci-fi megah.
 <div class="game-card">
 <div class="game-image" style="background-image:url('foto7.jpg');">
     <div class="apk-logo">
-        <img src="apk7.jpg"> </div>
+        <img src="apk7.jpg">
+    </div>
 </div>
 <div class="game-info">
 <span class="game-genre">Urban Fantasy RPG</span>
