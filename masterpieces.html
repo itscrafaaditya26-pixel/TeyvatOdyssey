@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enterprise Game Studio - The Masterpieces</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ================= BODY ================= */
+
+body{
+    margin:0;
+    padding:0;
+    background:#f5f7fb;
+    overflow-x:hidden;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* ================= NAVIGASI ================= */
+
+.sidebar{
+    z-index:10005 !important;
+}
+
+.overlay{
+    z-index:10001 !important;
+}
+
+.menu-button{
+    position:fixed !important;
+    top:10px !important;
+    left:15px !important;
+
+    z-index:10010 !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+
+    justify-content:center !important;
+    align-items:center !important;
+
+    gap:5px !important;
+
+    width:40px !important;
+    height:40px !important;
+
+    background:transparent !important;
+    cursor:pointer !important;
+}
+
+.menu-button span{
+    display:block !important;
+
+    width:22px !important;
+    height:2px !important;
+
+    background:#00d9ff !important;
+
+    border-radius:10px !important;
+
+    transition:0.4s !important;
+}
+
+.menu-button.active span:nth-child(1){
+    transform:translateY(7px) rotate(45deg) !important;
+}
+
+.menu-button.active span:nth-child(2){
+    opacity:0 !important;
+}
+
+.menu-button.active span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg) !important;
+}
+
+/* ================= HEADER ================= */
+
+.top-banner-zone{
+    position:relative;
+
+    width:100%;
+    height:34vh;
+
+    background-image:url('background.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.top-banner-zone::before{
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.45);
+
+    backdrop-filter:blur(1px);
+}
+
+.masterpiece-header{
+    position:relative;
+    z-index:2;
+}
+
+.masterpiece-header h1{
+    color:white;
+
+    font-size:2.5rem;
+
+    margin-bottom:10px;
+
+    letter-spacing:1px;
+}
+
+.masterpiece-header p{
+    color:#d7dce2;
+
+    font-size:0.95rem;
+
+    max-width:700px;
+}
+
+/* ================= CONTENT ================= */
+
+.main-content-zone{
+    padding:50px 18px 80px;
+}
+
+.masterpiece-container{
+    max-width:1150px;
+    margin:auto;
+}
+
+/* ================= GRID ================= */
+
+.game-grid{
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:28px;
+}
+
+/* ================= CARD ================= */
+
+.game-card{
+    background:white;
+
+    border-radius:18px;
+
+    /* overflow:hidden tetap di sini untuk menjaga radius sudut kartu luar */
+    overflow:hidden;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+
+    transition:0.35s ease;
+
+    border:1px solid #edf0f5;
+}
+
+.game-card:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 12px 35px rgba(0,217,255,0.15);
+}
+
+/* ================= FOTO BESAR ================= */
+
+.game-image{
+    position:relative;
+
+    width:100%;
+    height:220px;
+
+    background-size:cover;
+    background-position:center;
+
+    border-bottom:3px solid #00d9ff;
+
+    /* KUNCI PERBAIKAN: overflow dihapus dari sini agar logo bisa keluar kontainer gambar */
+}
+
+/* ================= FOTO APK (OVERLAP DI GARIS HIJAU) ================= */
+
+.apk-logo{
+    position:absolute;
+
+    right:24px;
+    bottom:-39px; /* Nilai minus ini membuat logo pas berada di tengah garis batasan */
+
+    width:78px;
+    height:78px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:white;
+
+    padding:4px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.15);
+
+    border:3px solid white;
+    
+    z-index: 5; /* Memastikan logo berada di lapisan paling depan */
+}
+
+.apk-logo img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:16px;
+}
+
+/* ================= INFO ================= */
+
+.game-info{
+    padding:24px;
+}
+
+.game-genre{
+    font-size:0.75rem;
+
+    font-weight:700;
+
+    color:#00b8d9;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+.game-info h2{
+    font-size:2rem;
+
+    margin-top:10px;
+    margin-bottom:14px;
+
+    color:#10151d;
+}
+
+.game-info p{
+    color:#4c5664;
+
+    line-height:1.8;
+
+    text-align:justify;
+
+    font-size:0.96rem;
+}
+
+/* ================= META ================= */
+
+.game-meta{
+    margin-top:24px;
+
+    padding-top:18px;
+
+    border-top:1px solid #edf0f5;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#707b88;
+
+    font-size:0.9rem;
+}
+
+.game-meta strong{
+    color:#111827;
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:768px){
+
+    .masterpiece-header h1{
+        font-size:3.4rem;
+    }
+
+    .game-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="menu-button" id="menuToggleBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<header class="top-bar"
+style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:60px;
+background:rgba(20,20,25,0.96);
+z-index:10008;
+display:flex;
+justify-content:center;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.08);
+">
+
+<div class="brand-title"
+style="
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+text-align:right;
+">
+
+<span class="main-title"
+style="
+color:#ffffff;
+font-family:'Impact',sans-serif;
+font-size:20px;
+text-transform:uppercase;
+">
+DEVELOPER WEBSITE
+</span>
+
+<span class="sub-title"
+style="
+color:#ffffff;
+font-size:12px;
+font-weight:300;
+">
+Rafa Rafka
+</span>
+
+</div>
+</header>
+
+<div class="overlay" id="menuOverlay"></div>
+
+<div class="sidebar" id="sideNavigation">
+
+<a href="index.html">Home</a>
+
+<details class="dropdown">
+<summary>
+About HoYoverse
+<span class="arrow">▼</span>
+</summary>
+
+<div class="dropdown-content">
+<a href="origin.html">Our Origin</a>
+<a href="timeline.html">Timeline</a>
+</div>
+</details>
+
+<details class="dropdown" open>
+<summary class="active">
+The Universe
+<span class="arrow">▼</span>
+</summary>
+
+<div class="dropdown-content">
+<a href="masterpieces.html"
+style="color:#58a6ff;font-weight:600;">
+The Masterpieces
+</a>
+
+<a href="#">Tech & Innovation</a>
+
+<a href="galeri.html">
+Media Gallery
+</a>
+</div>
+</details>
+
+<a href="#">Disclaimer & Credit</a>
+<a href="profil.html">About Me</a>
+
+</div>
+
+<div class="top-banner-zone">
+
+<div class="masterpiece-header">
+
+<h1>The Masterpieces</h1>
+
+<p>
+Karya-karya emas interaktif yang telah memikat
+jutaan pemain di seluruh dunia.
+</p>
+
+</div>
+
+</div>
+
+<div class="main-content-zone">
+
+<div class="masterpiece-container">
+
+<div class="game-grid">
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto1.jpg');">
+    <div class="apk-logo">
+        <img src="apk1.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Puzzle Platformer
+</span>
+
+<h2>FlyMe2theMoon</h2>
+
+<p>
+Karya independen pertama sebelum miHoYo resmi berdiri.
+Menampilkan Kiana Kaslana dalam petualangan menuju bulan
+dengan gameplay puzzle unik.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2011</strong></div>
+<div>Platform: <strong>iOS</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto2.jpg');">
+    <div class="apk-logo">
+        <img src="apk2.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Side Scrolling Shooter
+</span>
+
+<h2>Guns GirlZ</h2>
+
+<p>
+Awal mula dunia Honkai dengan gameplay aksi side-scrolling
+melawan zombie dalam nuansa anime futuristik.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2014</strong></div>
+<div>Platform: <strong>Mobile</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto3.jpg');">
+    <div class="apk-logo">
+        <img src="apk3.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+3D Action RPG
+</span>
+
+<h2>Honkai Impact 3rd</h2>
+
+<p>
+Game aksi cepat dengan visual sinematik dan
+sistem combo modern yang menjadi ikon miHoYo.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2016</strong></div>
+<div>Platform: <strong>PC & Mobile</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto4.jpg');">
+    <div class="apk-logo">
+        <img src="apk4.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Romance Detective
+</span>
+
+<h2>Tears of Themis</h2>
+
+<p>
+Petualangan investigasi hukum dengan nuansa romantis
+modern di kota futuristik Stellis.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2021</strong></div>
+<div>Platform: <strong>Mobile</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto5.jpg');">
+    <div class="apk-logo">
+        <img src="apk5.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Open World RPG
+</span>
+
+<h2>Genshin Impact</h2>
+
+<p>
+Mahakarya open world Teyvat dengan eksplorasi bebas,
+elemen combat, dan visual anime modern.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2020</strong></div>
+<div>Platform: <strong>All Platform</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto6.jpg');">
+    <div class="apk-logo">
+        <img src="apk6.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Turn Based RPG
+</span>
+
+<h2>Honkai Star Rail</h2>
+
+<p>
+Perjalanan kosmik Astral Express dengan gameplay
+strategi turn-based dan dunia sci-fi megah.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2023</strong></div>
+<div>Platform: <strong>PC, PS5, Mobile</strong></div>
+</div>
+
+</div>
+</div>
+
+<div class="game-card">
+
+<div class="game-image" style="background-image:url('foto7.jpg');">
+    <div class="apk-logo">
+        <img src="apk7.jpg">
+    </div>
+</div>
+
+<div class="game-info">
+
+<span class="game-genre">
+Urban Fantasy RPG
+</span>
+
+<h2>Zenless Zone Zero</h2>
+
+<p>
+Action RPG urban modern dengan visual stylish,
+musik energik, dan combat super cepat.
+</p>
+
+<div class="game-meta">
+<div>Rilis: <strong>2024</strong></div>
+<div>Platform: <strong>PC, PS5, Mobile</strong></div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+const menuToggleBtn =
+document.getElementById('menuToggleBtn');
+
+const sideNav =
+document.getElementById('sideNavigation');
+
+const overlay =
+document.getElementById('menuOverlay');
+
+function toggleMenu(){
+
+    menuToggleBtn.classList.toggle('active');
+
+    sideNav.classList.toggle('show');
+
+    overlay.classList.toggle('show');
+
+}
+
+menuToggleBtn.addEventListener('click',toggleMenu);
+
+overlay.addEventListener('click',toggleMenu);
+
+</script>
+
+</body>
+</html>
