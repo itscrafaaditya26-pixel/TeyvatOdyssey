@@ -657,6 +657,11 @@
 
         }
 
+        .game-card a{
+            text-decoration:none;
+            color:inherit;
+        }
+
         .game-info p{
 
             color:var(--text-sub);
@@ -803,11 +808,11 @@
 
             <div class="dropdown-content">
 
-                <a href="#">
+                <a href="masterpieces.html">
                     The Masterpieces
                 </a>
 
-                <a href="#">
+                <a href="tech.html">
                     Tech & Innovation
                 </a>
 
@@ -819,7 +824,7 @@
 
         </details>
 
-        <a href="#">
+        <a href="credit.html">
             Disclaimer & Credit
         </a>
 
@@ -860,15 +865,7 @@
 
                     <div class="carousel-slide" id="mainSlider">
 
-                        <img src="foto1.jpg" class="active">
-                        <img src="foto2.jpg">
-                        <img src="foto3.jpg">
-                        <img src="foto4.jpg">
-                        <img src="foto5.jpg">
-                        <img src="foto6.jpg">
-                        <img src="foto7.jpg">
-
-                    </div>
+                        <img src="foto1.jpg" class="active"> <img src="foto2.jpg">                <img src="foto4.jpg">                <img src="foto3.jpg">                <img src="foto5.jpg">                <img src="foto6.jpg">                <img src="foto7.jpg">                </div>
 
                 </div>
 
@@ -883,11 +880,11 @@
                     </div>
 
                     <div class="thumb-box" onclick="jumpToSlide(2)">
-                        <img src="apk3.jpg">
+                        <img src="apk4.jpg">
                     </div>
 
                     <div class="thumb-box" onclick="jumpToSlide(3)">
-                        <img src="apk4.jpg">
+                        <img src="apk3.jpg">
                     </div>
 
                     <div class="thumb-box" onclick="jumpToSlide(4)">
@@ -983,15 +980,16 @@
             toggleMenu
         );
 
+        /* MODIFIKASI: Susunan array gameNames diurutkan ulang berdasarkan Tahun Rilis */
         const gameNames = [
 
             "FlyMe2theMoon",
 
             "Guns GirlZ",
 
-            "Genshin Impact",
-
             "Honkai Impact 3rd",
+
+            "Genshin Impact",
 
             "Tears of Themis",
 
