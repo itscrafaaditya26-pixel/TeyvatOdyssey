@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech & Innovation - Dibalik Teknologi HoYoverse</title>
+    <title>Our Origin - Sejarah Revolusi HoYoverse</title>
     <style>
-        /* ================= RESET & DASAR ================= */
+        /* ================= RESET & DASAR (TEMA PUTIH SESUAI HOME) ================= */
         * {
             margin: 0;
             padding: 0;
@@ -18,8 +18,8 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f4f4f4; 
-            color: #444; 
+            background: #f4f4f4; /* Background abu-abu terang sesuai Home */
+            color: #444; /* Warna teks utama mHoYo */
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
@@ -29,7 +29,7 @@
 
         .main-content {
             flex: 1;
-            padding-top: 60px; 
+            padding-top: 60px; /* Jarak agar tidak tertutup top-bar */
         }
 
         /* ================= BATANG HITAM ATAS (TOP BAR) ================= */
@@ -98,7 +98,9 @@
             transition: 0.3s;
         }
 
-        .menu-button:hover { transform: scale(1.1); }
+        .menu-button:hover {
+            transform: scale(1.1);
+        }
 
         .menu-button span {
             width: 22px; 
@@ -108,9 +110,17 @@
             transition: 0.4s;
         }
 
-        .menu-button.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .menu-button.active span:nth-child(2) { opacity: 0; }
-        .menu-button.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
 
         /* ================= OVERLAY ================= */
         .overlay {
@@ -127,9 +137,12 @@
             z-index: 998;
         }
 
-        .overlay.show { opacity: 1; visibility: visible; }
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
 
-        /* ================= SIDEBAR ================= */
+        /* ================= SIDEBAR (GAYA GITHUB FORMAL GELAP) ================= */
         .sidebar {
             position: fixed;
             top: 0;
@@ -147,10 +160,16 @@
             overflow-y: auto;
         }
 
-        @media(min-width:768px) { .sidebar { width: 320px; left: -320px; } }
-        .sidebar.show { left: 0; }
+        @media(min-width:768px) {
+            .sidebar { width: 320px; left: -320px; }
+        }
 
-        .sidebar > a, .sidebar summary {
+        .sidebar.show {
+            left: 0;
+        }
+
+        .sidebar > a, 
+        .sidebar summary {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -161,16 +180,36 @@
             padding: 10px 16px; 
             margin-bottom: 2px;
             border-radius: 6px; 
+            background: transparent; 
+            border: none;
             transition: 0.2s;
             cursor: pointer;
             list-style: none; 
         }
 
         .sidebar summary::-webkit-details-marker { display: none; }
-        .sidebar > a:hover, .sidebar summary:hover { color: #58a6ff; background: rgba(255, 255, 255, 0.05); }
-        .sidebar .active { color: #ffffff !important; font-weight: 600; background: rgba(255, 255, 255, 0.07) !important; }
-        .sidebar details[open] summary .arrow { transform: rotate(180deg); }
-        .sidebar summary .arrow { font-size: 10px; transition: transform 0.2s ease; display: inline-block; }
+
+        .sidebar > a:hover,
+        .sidebar summary:hover {
+            color: #58a6ff; 
+            background: rgba(255, 255, 255, 0.05); 
+        }
+
+        .sidebar .active {
+            color: #ffffff !important; 
+            font-weight: 600; 
+            background: rgba(255, 255, 255, 0.07) !important; 
+        }
+
+        .sidebar details[open] summary .arrow {
+            transform: rotate(180deg);
+        }
+
+        .sidebar summary .arrow {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
 
         .sidebar .dropdown-content {
             display: flex;
@@ -191,136 +230,148 @@
             display: block;
         }
 
-        .sidebar .dropdown-content a:hover { color: #58a6ff; }
+        .sidebar .dropdown-content a:hover {
+            color: #58a6ff;
+            background: transparent;
+        }
 
-        /* ================= PERBAIKAN: HEADER BERGAMBAR DI-CERAHKAN ================= */
+        /* ================= TAMPILAN HALAMAN (TEMA PUTIH) ================= */
+        
+        /* Bagian Header Atas + Foto miHoYo */
         .page-header {
-            position: relative;
-            width: 100%;
-            height: 380px; 
-            background: url('perusahaan.jpg') center/cover no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            padding: 0 24px;
-            margin-bottom: 40px;
+            padding: 60px 24px 20px; 
         }
 
-        /* MODIFIKASI: Transparansi diturunkan dari 0.5/0.85 menjadi 0.2/0.45 agar gambar jauh lebih cerah */
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-logo {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(20, 20, 25, 0.45));
-            z-index: 1;
+            max-width: 550px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2; 
-            max-width: 700px;
-        }
-
-        /* MODIFIKASI: Penambahan text-shadow tebal hitam agar teks tetap terbaca tajam di latar yang cerah */
         .page-header h1 {
-            font-size: 2.5rem; 
-            margin-bottom: 15px;
-            color: #ffffff; 
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.5);
+            font-size: 2.2rem; 
+            margin-bottom: 10px;
+            color: #111;
         }
 
         .page-header .subtitle {
             font-size: 1.1rem;
-            color: #ffffff; /* Menggunakan putih solid */
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
-            font-weight: 500;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.6);
         }
 
-        @media(max-width: 767px) {
-            .page-header { height: 300px; }
-            .page-header h1 { font-size: 1.8rem; }
-            .page-header .subtitle { font-size: 0.95rem; }
-        }
-
-        /* ================= CONTAINER KONTEN TEKNIS ================= */
-        .tech-container {
-            max-width: 750px;        
+        /* Container Pembungkus Bab */
+        .documentary-container {
+            max-width: 650px;        
             margin: 0 auto;          
-            padding: 0 24px 60px;
+            padding: 20px 24px 60px;
         }
 
-        /* Kotak Putih Inovasi */
-        .tech-section {
-            background: #ffffff;
+        /* Kotak Putih untuk Setiap Bab */
+        .chapter {
+            background: #ffffff; /* Putih bersih sesuai tema Home */
             border: 1px solid #ddd;
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             margin-bottom: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .tech-tag {
+        .chapter-tag {
             display: inline-block;
-            color: #00d9ff;
-            background: #0d1117;
+            color: #0088cc;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        .tech-section h2 {
-            font-size: 1.5rem;
+        .chapter h2 {
+            font-size: 1.4rem;
             color: #111;
             margin-bottom: 15px;
             line-height: 1.3;
         }
 
-        .tech-section p {
+        .chapter p {
             font-size: 0.95rem;          
+            font-weight: 400;        
             line-height: 1.6;        
             color: #444;             
             margin-bottom: 15px;
             text-align: justify; 
+            word-break: break-word;   
+            hyphens: auto;   
         }
 
-        /* List Fitur */
-        .feature-list {
-            margin-left: 20px;
-            margin-bottom: 15px;
+        .chapter p:last-child {
+            margin-bottom: 0;
         }
 
-        .feature-list li {
-            font-size: 0.95rem;
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .feature-list strong {
-            color: #111;
-        }
-
-        .tech-section blockquote {
+        .chapter blockquote {
             border-left: 4px solid #00d9ff;
             padding-left: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
             font-style: italic;
             color: #222;
             font-size: 1rem;
             font-weight: 500;
         }
 
-        /* ================= FOOTER ================= */
+        /* Tabel Info Pendiri (Gaya Terang) */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+
+        .info-table th, .info-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .info-table th {
+            background: #f9f9f9;
+            color: #111;
+        }
+
+        /* Grid Khusus Bab 10 */
+        .tech-grid {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tech-card {
+            background: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 3px solid #00d9ff;
+        }
+
+        .tech-card h4 {
+            font-size: 0.95rem;
+            color: #111;
+            margin-bottom: 3px;
+        }
+
+        .tech-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* ================= FOOTER (PUTIH SESUAI HOME) ================= */
         footer {
             text-align: center;
             padding: 20px;
@@ -354,19 +405,19 @@
     <div class="sidebar" id="sidebar">
         <a href="index.html">Home</a>
 
-        <details class="dropdown">
+        <details class="dropdown" open>
             <summary>About HoYoverse <span class="arrow">▼</span></summary>
             <div class="dropdown-content">
-                <a href="origin.html">Our Origin</a>
+                <a href="origin.html" class="active">Our Origin</a>
                 <a href="timeline.html">Timeline</a>
             </div>
         </details>
 
-        <details class="dropdown" open>
-            <summary class="active">The Universe <span class="arrow">▼</span></summary>
+        <details class="dropdown">
+            <summary>The Universe <span class="arrow">▼</span></summary>
             <div class="dropdown-content">
                 <a href="masterpieces.html">The Masterpieces</a>
-                <a href="tech.html" style="color:#58a6ff;font-weight:600;">Tech & Innovation</a>
+                <a href="tech.html">Tech & Innovation</a>
                 <a href="galeri.html">Media Gallery</a>
             </div>
         </details>
@@ -378,60 +429,115 @@
     <div class="main-content">
         
         <div class="page-header">
-            <div class="header-overlay"></div>
-            <div class="header-content">
-                <h1>Tech & Innovation</h1>
-                <p class="subtitle">Analisis mendalam mengenai implementasi rekayasa perangkat lunak, algoritma mutakhir, dan infrastruktur server global HoYoverse.</p>
-            </div>
+            <img src="miHoYo.jpg" class="hero-logo" alt="miHoYo Logo">
+            <h1>Our Origin</h1>
+            <p class="subtitle">Melihat kembali akar sejarah, idealisme, dan bagaimana baris kode para otaku berhasil merevolusi industri hiburan global.</p>
         </div>
 
-        <div class="tech-container">
+        <div class="documentary-container">
             
-            <div class="tech-section">
-                <span class="tech-tag">Alokasi Riset</span>
-                <h2>Siklus Investasi dan Skala Finansial</h2>
-                <p>HoYoverse menerapkan model manajemen bisnis yang unik di industri game: mengalokasikan kembali sebagian besar keuntungan operasional murni untuk riset teknologi fundamental. Sebagai bukti nyata, biaya pengembangan awal *Genshin Impact* mencapai 100 juta USD, namun biaya pemeliharaan dan riset lanjutannya membengkak hingga **200 juta USD per tahun**.</p>
-                <p>Langkah ini diambil untuk membiayai ratusan insinyur perangkat lunak di berbagai belahan dunia guna memecahkan masalah batasan komputasi ponsel pintar.</p>
+            <div class="chapter">
+                <span class="chapter-tag">Prolog</span>
+                <h2>Industri yang Tidak Melihat Mereka</h2>
+                <p>Awal 2010-an adalah era ketika industri game global dikuasai secara kaku oleh studio raksasa, modal masif, dan formula aman yang dapat diprediksi. Di Tiongkok, pasar dipenuhi oleh MMORPG bertema sejarah dinasti konvensional dan game kompetitif berbasis rutinitas grinding yang melelahkan.</p>
+                <blockquote>“Ide tentang game bergaya anime dianggap terlalu kecil, terlalu niche, dan tidak menjanjikan secara bisnis.”</blockquote>
+                <p>Namun di balik semua kebisingan industri yang monoton itu, sebuah ambisi besar sedang dirancang diam-diam di sudut kamar asrama mahasiswa teknik.</p>
             </div>
 
-            <div class="tech-section">
-                <span class="tech-tag">Grafis & Rendering</span>
-                <h2>Arsitektur Animasi Cel-Shading Progresif</h2>
-                <p>HoYoverse memodifikasi engine komersial Unity secara masif (*Heavy Customization*) hingga melahirkan sistem rendering internal yang dipatenkan. Tujuannya adalah menghilangkan batas pemisah antara visual game 3D dengan kehalusan estetika anime 2D.</p>
-                <ul class="feature-list">
-                    <li><strong>Sistem Bayangan Berbasis Karakter:</strong> Berbeda dari bayangan lingkungan biasa, tim insinyur mengembangkan peta bayangan wajah khusus (*Face Shadow Map*) untuk memastikan kontur wajah karakter anime tetap estetis dari sudut pencahayaan ekstrem mana pun.</li>
-                    <li><strong>GPU-driven Pipeline:</strong> Menggeser beban kalkulasi visual berat dari CPU ke GPU pada perangkat mobile. Teknik rendering ini mencakup sistem *Level of Detail* (LOD) dinamis yang otomatis menurunkan detail objek ultra-jauh tanpa merusak keindahan cakrawala pandang (*Render Distance*).</li>
-                </ul>
+            <div class="chapter">
+                <span class="chapter-tag">Bab 1 • Tahun 2011</span>
+                <h2>Kamar Asrama yang Menjadi “Laboratorium”</h2>
+                <p>Di Shanghai Jiao Tong University, tiga mahasiswa teknik komputer tingkat akhir berbagi satu ruang kamar asrama yang sempit. Mereka adalah Cai Haoyu, Liu Wei, dan Luo Yuhao. Tidak ada investor besar, tidak ada kantor mewah, dan tidak ada jaminan finansial sama sekali.</p>
+                <p>Yang mereka miliki hanyalah beberapa laptop sederhana yang sering kepanasan, kemampuan coding yang luar biasa, dan obsesi murni terhadap budaya ACG (Anime, Comic, Games). Dari kamar kecil itu, mereka membangun fondasi awal perusahaan bernama <strong>miHoYo</strong>.</p>
+                <table class="info-table">
+                    <tr><th>Pendiri</th><th>Fokus Peran Utama</th></tr>
+                    <tr><td><strong>Cai Haoyu</strong></td><td>Otak Teknologi & Visi Produk</td></tr>
+                    <tr><td><strong>Liu Wei (Dawei)</strong></td><td>Wajah Publik & Komunitas</td></tr>
+                    <tr><td><strong>Luo Yuhao</strong></td><td>Arsitek Kode & Core Engine</td></tr>
+                </table>
+                <blockquote>“Kami ingin membuat game yang kami sendiri, sebagai seorang otaku, ingin mainkan.”</blockquote>
             </div>
 
-            <div class="tech-section">
-                <span class="tech-tag">Audio Sinyal</span>
-                <h2>Logika Transmisi Audio HOYO-MiX</h2>
-                <p>Divisi musik internal mereka, HOYO-MiX, bekerja sama erat dengan tim programer untuk membangun sistem pemrosesan sinyal audio digital dinamis yang terintegrasi di dalam game.</p>
-                <ul class="feature-list">
-                    <li><strong>Interactive Music Layers:</strong> Setiap lagu di daerah open-world memiliki 3 hingga 5 lapisan instrumen terpisah (misalnya: versi eksplorasi santai, versi malam hari, dan versi pertempuran intens). Engine game secara konstan memantau status pemain dan melakukan *cross-fade* atau pengikisan frekuensi instrumen secara real-time tanpa memotong tempo lagu.</li>
-                    <li><strong>Sistem Akustik Ruang:</strong> Algoritma audio akan menghitung jarak pantulan suara berdasarkan geometri sekitar karakter secara otomatis—seperti efek gema nyata saat berada di dalam gua sempit atau puncak gunung.</li>
-                </ul>
+            <div class="chapter">
+                <span class="chapter-tag">Bab 2 • Akhir 2011</span>
+                <h2>Game Pertama: Bukti Bahwa Mimpi Itu Nyata</h2>
+                <p>Game komersial pertama yang berhasil dirilis secara mandiri dari rahim studio amatir ini berjudul <strong>FlyMe2theMoon</strong>. Game ini merupakan sebuah 2D action-platformer sederhana dengan gaya visual anime yang dipublikasikan di platform iOS yang kala itu baru berkembang.</p>
+                <p>Secara simbolis, game ini sangat penting bagi sejarah panjang perusahaan. Untuk pertama kalinya, untaian baris kode abstrak yang mereka tulis berubah menjadi produk interaktif nyata. Di sinilah karakter ikonik berambut perak bernama <strong>Kiana Kaslana</strong> pertama kali menampakkan wujud awalnya dalam semesta digital.</p>
             </div>
 
-            <div class="tech-section">
-                <span class="tech-tag">Kecerdasan Buatan</span>
-                <h2>Eksperimen AI Lab & Animasi Prosedural</h2>
-                <p>HoYoverse mendirikan laboratorium riset kecerdasan buatan khusus untuk mengeksplorasi efisiensi produksi konten skala besar (*Procedural Generation*) dan interaksi virtual:</p>
-                <ul class="feature-list">
-                    <li><strong>Proyek Lumi (Virtual Actress):</strong> Menggabungkan Unreal Engine dengan teknologi pemrosesan visual AI untuk melakukan konversi otomatis dari rekaman video biasa menjadi gerakan tulang (*Rigging Animation*) karakter 3D secara presisi, memangkas proses manual animator tradisional hingga 60%.</li>
-                    <li><strong>Neural Network untuk Text-to-Speech:</strong> Pengembangan generator suara berbasis kecerdasan buatan untuk membantu proses sinkronisasi gerak bibir karakter (*Lip-Sync*) otomatis dalam empat bahasa utama (Mandarin, Jepang, Inggris, Korea) berdasarkan teks naskah cerita.</li>
-                </ul>
+            <div class="chapter">
+                <span class="chapter-tag">Bab 3 • Tahun 2012</span>
+                <h2>Kelahiran Semesta “Honkai” & Tragedi Manusia</h2>
+                <p>Tahun 2012 menjadi titik transformasi struktural. Berbekal pinjaman kecil dari inkubator teknologi universitas, miHoYo merilis <em>Houkai Gakuen</em> (Honkai Gakuen 1). Di sinilah konsep fiksi ilmiah mengenai <strong>“Honkai”</strong> diperkenalkan secara resmi: sebuah kekuatan misterius destruktif yang bertujuan memurnikan peradaban manusia.</p>
+                <p>Walaupun visual permainannya masih menggunakan gaya 2D chibi yang imut, elemen fundamental narasi miHoYo mulai mengakar kuat: dunia kelam yang bersembunyi di balik estetika indah, konflik kepunahan massal, serta fokus cerita pada karakter perempuan yang kuat emosional.</p>
             </div>
 
-            <div class="tech-section">
-                <span class="tech-tag">Infrastruktur Jaringan</span>
-                <h2>Distribusi Komputasi Server Cloud & Jaringan Global</h2>
-                <p>Untuk melayani puluhan juta pemain aktif harian di seluruh dunia secara bersamaan tanpa kendala sinkronisasi data yang lambat, HoYoverse berinvestasi pada rekayasa infrastruktur jaringan tingkat tinggi:</p>
-                <ul class="feature-list">
-                    <li><strong>HoYoverse Cloud Gaming:</strong> Layanan resmi yang meremot pemrosesan grafis game ke superkomputer server cloud. Pengguna hanya menerima transmisi kompresi video interaktif 60 FPS dengan latensi di bawah 30ms, mengubah ponsel spesifikasi rendah menjadi layar monitor konsol bertenaga tinggi.</li>
-                    <li><strong>Riset Medis & Teknologi Luar:</strong> Sebagai fakta ekspansi riset yang radikal, miHoYo bahkan pernah mendanai proyek riset laboratorium bersama Universitas Shanghai Jiao Tong untuk mengembangkan teknologi antarmuka otak-komputer (*Brain-Computer Interface*) serta berinvestasi pada pengembangan satelit komersial.</li>
-                </ul>
+            <div class="chapter">
+                <span class="chapter-tag">Bab 4 • Tahun 2013 - 2015</span>
+                <h2>Evolusi Di Atas Jurang Kebangkrutan</h2>
+                <p>Tahun-tahun ini dipenuhi oleh eksperimen keras, kegagalan skala kecil, penyempurnaan basis teknologi engine, dan penguatan struktur tim internal. miHoYo merilis <em>Guns GirlZ</em> (Honkai Gakuen 2) yang mulai mengadopsi model bisnis Free-to-Play dengan sistem monetisasi gacha.</p>
+                <p>Dari perjuangan mempertahankan arus kas ini, miHoYo memahami satu hal yang menjadi dogma suci mereka hingga hari ini: <strong>karakter adalah inti emosional dari semua game mereka.</strong> Bukan sekadar mekanik gameplay, melainkan jalinan empati mendalam antara pemain dan karakter fiksi tersebut.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 5 • Tahun 2016</span>
+                <h2>Honkai Impact 3rd & Lahirnya Identitas Global</h2>
+                <p>Pada akhir tahun 2016, miHoYo meluncurkan <strong>Honkai Impact 3rd</strong>. Inilah titik balik krusial di mana industri game mobile global tertegun melihat sebuah pencapaian teknis grafis 3D anime cel-shaded yang awalnya dianggap mustahil untuk sebuah ponsel pintar.</p>
+                <p>Game ini membawa kualitas animasi setara anime televisi Jepang, narasi cerita dramatis yang gelap, serta potongan adegan sinematik emosional. Semboyan korporasi mereka bergema kuat di seluruh komunitas internasional: <em>“May all the beauty be blessed in the world.”</em></p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 6 • Tahun 2020</span>
+                <h2>Ledakan Global yang Mengubah Lanskap Industri</h2>
+                <p>September 2020 dicatat sebagai sejarah besar dunia hiburan digital modern. miHoYo secara berani menginvestasikan dana riset sebesar 100 juta USD untuk merilis sebuah proyek dunia terbuka masif bertajuk <strong>Genshin Impact</strong> secara simultan di PC, Konsol, dan Mobile.</p>
+                <p>Dalam hitungan hari, jutaan pemain membanjiri server dan diskusi media sosial meledak. miHoYo menyajikan sebuah mahakarya dunia fantasi terbuka (Teyvat) yang kaya akan keragaman budaya sosiologis, gratis untuk dimainkan, tanpa mengorbankan kualitas grafis maupun kedalaman narasi.</p>
+                <blockquote>Genshin Impact bukan sekadar kesuksesan komersial biasa; ia adalah sebuah fenomena kebudayaan pop global baru.</blockquote>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 7 • Tahun 2022</span>
+                <h2>HoYoverse: Evolusi Menjadi Multidimensi</h2>
+                <p>Pasca kesuksesan masif yang diraih, miHoYo secara resmi meluncurkan merek global baru bernama <strong>HoYoverse</strong> dengan jaringan kantor operasional canggih di Singapura, Montreal, Los Angeles, Tokyo, dan Seoul.</p>
+                <p>Ini bukan sekadar perubahan nama atau restrukturisasi hukum korporasi biasa. Ini adalah manifesto visi jangka panjang yang sangat agresif: transformasi dari sebuah studio pengembang video game konvensional menjadi arsitek pembangun sebuah <em>Artificial Virtual World</em> terintegrasi.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 8 • Tahun 2023</span>
+                <h2>Honkai: Star Rail & Pembuktian Kekonsistenan Standar</h2>
+                <p>Ketika publik administratif mengasumsi bahwa kesuksesan Genshin Impact hanyalah faktor keberuntungan momentum pandemi, HoYoverse membungkam skeptisisme tersebut lewat perilisan <strong>Honkai: Star Rail</strong>, sebuah game RPG berbasis giliran (<em>Turn-Based</em>) luar angkasa yang megah.</p>
+                <p>Game ini langsung menduduki puncak tangga popularitas global, memenangkan predikat <em>Game of the Year</em> di berbagai platform internasional, serta membuktikan keunggulan metodologi produksi HoYoverse dalam mengeksekusi berbagai genre permainan secara konsisten.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 9 • Tahun 2024</span>
+                <h2>Zenless Zone Zero & Keberanian Eksperimen Gaya Urban</h2>
+                <p>Peluncuran <strong>Zenless Zone Zero (ZZZ)</strong> menjadi bukti keberanian eksperimen visual yang fresh. Berbeda total dari nuansa fantasi tradisional ataupun opera antariksa sci-fi, ZZZ membawa para pemain ke atmosfer perkotaan futuristik pasca-apokaliptik bernama New Eridu.</p>
+                <p>Dibalut dengan estetika street culture yang kental, musik hip-hop, grafiti jalanan mencolok, dan sistem pertarungan aksi cepat yang sangat stylish, game ini membuktikan bahwa tim internal HoYoverse menolak untuk stagnan.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 10 • Sekarang</span>
+                <h2>Ekosistem Hiburan Global yang Masif</h2>
+                <p>Hari ini, HoYoverse telah bertransformasi sepenuhnya menjadi sebuah ekosistem budaya global yang mapan. Karakter fiksi ciptaan mereka telah berevolusi menjadi ikon kebudayaan pop kontemporer internasional.</p>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Seni & Orkestra Dunia</h4>
+                        <p>Tur konser simfoni musik HOYO-MiX yang rutin digelar di gedung-gedung orkestra legendaris lintas benua.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Riset Teknologi AI & Cloud</h4>
+                        <p>Investasi masif pada riset kecerdasan buatan, superkomputer, hingga avatar digital masa depan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" style="border-top: 4px solid #00d9ff;">
+                <span class="chapter-tag" style="color: #0088cc;">Epilog</span>
+                <h2>Masa Depan yang Belum Selesai</h2>
+                <p>Yang paling menarik dari sejarah panjang HoYoverse bukanlah apa yang telah mereka capai di masa lalu, melainkan kesadaran penuh bahwa mereka belum selesai melangkah.</p>
+                <p>Masa depan yang sedang mereka rancang melalui algoritma dan baris kode komputer bukanlah sekadar kumpulan sekuel game komersial belaka. Mereka sedang terus melangkah mantap menuju penciptaan sebuah dunia virtual utuh yang hidup.</p>
+                <blockquote>“Tech Otakus Save the World”</blockquote>
+                <p>Dari kamar asrama kecil, laptop sederhana, dan mimpi yang sempat diremehkan; kini menjelma menjadi fenomena peradaban digital berskala global. Perjalanan historis ini adalah bukti nyata bahwa teknologi yang bersanding dengan imajinasi murni... benar-benar mampu mengubah wajah dunia selamanya.</p>
             </div>
 
         </div>
