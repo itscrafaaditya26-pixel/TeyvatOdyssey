@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Developer Website</title>
+    <style>
+        /* ================= RESET & DASAR ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4; 
+            color: #444; 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 60px; 
+        }
+
+        /* ================= BATANG HITAM ATAS (TOP BAR) ================= */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px; 
+            background: rgba(20, 20, 25, 0.96); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 997; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            text-align: right;
+            font-family: 'Impact', 'Arial Black', sans-serif; 
+            padding-left: 50px;
+        }
+
+        .main-title {
+            color: #ffffff;
+            font-size: 24px; 
+            text-transform: uppercase; 
+            line-height: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif; 
+            font-size: 14px; 
+            font-weight: 300;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        @media(max-width: 767px) {
+            .main-title { font-size: 5vw; }
+            .sub-title { font-size: 3vw; }
+        }
+
+        /* ================= TOMBOL GARIS 3 ================= */
+        .menu-button {
+            position: fixed;
+            top: 10px; 
+            left: 15px;
+            width: 40px; 
+            height: 40px;
+            background: transparent; 
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px; 
+            cursor: pointer;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .menu-button:hover { transform: scale(1.1); }
+
+        .menu-button span {
+            width: 22px; 
+            height: 2px; 
+            background: #00d9ff;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .menu-button.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-button.active span:nth-child(2) { opacity: 0; }
+        .menu-button.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ================= OVERLAY ================= */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.show { opacity: 1; visibility: visible; }
+
+        /* ================= SIDEBAR GELAP ================= */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -75%;
+            width: 75%;
+            max-width: 320px;
+            height: 100vh;
+            background: #0d1117; 
+            backdrop-filter: blur(20px);
+            padding: 80px 10px 20px; 
+            transition: 0.4s cubic-bezier(.77,0,.18,1);
+            z-index: 999;
+            border-right: 1px solid #30363d;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+
+        @media(min-width:768px) { .sidebar { width: 320px; left: -320px; } }
+        .sidebar.show { left: 0; }
+
+        .sidebar > a, .sidebar summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #c9d1d9;
+            font-size: 14px; 
+            font-weight: 400; 
+            padding: 10px 16px; 
+            margin-bottom: 2px;
+            border-radius: 6px; 
+            transition: 0.2s;
+            cursor: pointer;
+            list-style: none; 
+        }
+
+        .sidebar summary::-webkit-details-marker { display: none; }
+        .sidebar > a:hover, .sidebar summary:hover { color: #58a6ff; background: rgba(255, 255, 255, 0.05); }
+        .sidebar .active { color: #ffffff !important; font-weight: 600; background: rgba(255, 255, 255, 0.07) !important; }
+        .sidebar details[open] summary .arrow { transform: rotate(180deg); }
+        .sidebar summary .arrow { font-size: 10px; transition: transform 0.2s ease; display: inline-block; }
+
+        .sidebar .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px; 
+            border-left: 1px solid #30363d; 
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .dropdown-content a {
+            text-decoration: none;
+            color: #8b949e; 
+            font-size: 13.5px;
+            padding: 8px 16px;
+            transition: 0.2s;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .sidebar .dropdown-content a:hover { color: #58a6ff; }
+
+        /* ================= UPDATE: HEADER SEPERTIGA ATAS HITAM SOLID ================= */
+        .page-header {
+            position: relative;
+            width: 100%;
+            height: 380px; 
+            background: #141419; /* Mengubah latar belakang menjadi abu-hitam gelap solid */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 24px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2; 
+            max-width: 700px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem; 
+            margin-bottom: 15px;
+            color: #ffffff; 
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #b3b3b3; /* Warna teks abu terang agar nyaman dilihat di latar hitam */
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        @media(max-width: 767px) {
+            .page-header { height: 300px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-header .subtitle { font-size: 0.95rem; }
+        }
+
+        /* ================= CONTAINER KONTEN PROFIL ================= */
+        .profile-container {
+            max-width: 750px;        
+            margin: 0 auto;          
+            padding: 0 24px 60px;
+        }
+
+        .profile-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #0d1117;
+            color: #00d9ff;
+            font-size: 3rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .profile-card h2 {
+            font-size: 1.8rem;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .profile-role {
+            font-size: 1rem;
+            color: #00d9ff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .profile-bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            text-align: justify;
+        }
+
+        .info-table {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .info-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .info-table td:first-child {
+            font-weight: 600;
+            color: #111;
+            width: 35%;
+        }
+
+        .info-table td:last-child {
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="brand-title">
+            <span class="main-title">Developer Website</span>
+            <span class="sub-title">Rafa Rafka</span>
+        </div>
+    </div>
+
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+
+        <details class="dropdown">
+            <summary>About HoYoverse <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="origin.html">Our Origin</a>
+                <a href="timeline.html">Timeline</a>
+            </div>
+        </details>
+
+        <details class="dropdown">
+            <summary>The Universe <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="masterpieces.html">The Masterpieces</a>
+                <a href="tech.html">Tech & Innovation</a>
+                <a href="galeri.html">Media Gallery</a>
+            </div>
+        </details>
+
+        <a href="credit.html">Disclaimer & Credit</a>
+        <a href="about.html" class="active">About Me</a>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="page-header">
+            <div class="header-content">
+                <h1>About Me</h1>
+                <p class="subtitle">Mengenal lebih dekat pengembang di balik pembuatan dan perancangan platform informasi digital HoYoverse ini.</p>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            
+            <div class="profile-card">
+                <div class="profile-avatar">RR</div>
+                
+                <h2>Rafa Rafka</h2>
+                <div class="profile-role">Web Developer / Student</div>
+                
+                <p class="profile-bio">
+                    Halo! Saya adalah kreator dan pengembang di balik website portofolio dokumenter ini. Proyek ini dibangun sebagai bagian dari dedikasi saya untuk mempelajari rekayasa web, manajemen tata letak responsif, serta mendokumentasikan ekosistem industri kreatif dan teknologi yang dikembangkan oleh miHoYo/HoYoverse.
+                </p>
+
+                <table class="info-table">
+                    <tr>
+                        <td>Nama Lengkap</td>
+                        <td>Rafa Aditya Rafka</td>
+                    </tr>
+                    <tr>
+                        <td>Peran Proyek</td>
+                        <td>Front-End Designer & Content Writer</td>
+                    </tr>
+                    <tr>
+                        <td>Tahun Rilis</td>
+                        <td>2026</td>
+                    </tr>
+                    <tr>
+                        <td>Fokus Studi</td>
+                        <td>Pengembangan Perangkat Lunak & Desain Antarmuka</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; Copyright by Rafa Aditya 2026
+    </footer>
+
+    <script>
+        function toggleMenu(){
+            document.getElementById("sidebar").classList.toggle("show");
+            document.getElementById("overlay").classList.toggle("show");
+            document.querySelector(".menu-button").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
