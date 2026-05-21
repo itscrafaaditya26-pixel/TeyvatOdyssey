@@ -3,277 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Game Studio - Timeline</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <title>Our Origin - Sejarah Revolusi HoYoverse</title>
     <style>
-        /* ================= FIX NAVIGASI ================= */
-        .sidebar { z-index: 10005 !important; }
-        .overlay { z-index: 10001 !important; }
-        .menu-button {
-            position: fixed !important; top: 10px !important; left: 15px !important;
-            z-index: 10010 !important; display: flex !important; flex-direction: column !important;
-            justify-content: center !important; align-items: center !important;
-            gap: 5px !important; width: 40px !important; height: 40px !important;
-            background: transparent !important; cursor: pointer !important;
-        }
-        .menu-button span {
-            display: block !important; width: 22px !important; height: 2px !important;
-            background: #00d9ff !important; border-radius: 10px !important; transition: 0.4s !important;
-        }
-        .menu-button.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-        .menu-button.active span:nth-child(2) { opacity: 0 !important; }
-        .menu-button.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
-
-        /* ================= STRUKTUR BACKGROUND KANVAS ================= */
-        body {
-            background: #ffffff;
+        /* ================= RESET & DASAR (TEMA PUTIH SESUAI HOME) ================= */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Sepertiga Kanvas Atas Berwarna Hitam (Banner Area) */
-        .top-banner-zone {
-            position: relative;
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4; /* Background abu-abu terang sesuai Home */
+            color: #444; /* Warna teks utama mHoYo */
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 60px; /* Jarak agar tidak tertutup top-bar */
+        }
+
+        /* ================= BATANG HITAM ATAS (TOP BAR) ================= */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 35vh;
-            background: #0d1117;
+            height: 60px; 
+            background: rgba(20, 20, 25, 0.96); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 997; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            text-align: right;
+            font-family: 'Impact', 'Arial Black', sans-serif; 
+            padding-left: 50px;
+        }
+
+        .main-title {
+            color: #ffffff;
+            font-size: 24px; 
+            text-transform: uppercase; 
+            line-height: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif; 
+            font-size: 14px; 
+            font-weight: 300;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        @media(max-width: 767px) {
+            .main-title { font-size: 5vw; }
+            .sub-title { font-size: 3vw; }
+        }
+
+        /* ================= TOMBOL GARIS 3 ================= */
+        .menu-button {
+            position: fixed;
+            top: 10px; 
+            left: 15px;
+            width: 40px; 
+            height: 40px;
+            background: transparent; 
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 60px 24px 20px;
-            z-index: 2;
+            gap: 5px; 
+            cursor: pointer;
+            z-index: 1000;
+            transition: 0.3s;
         }
 
-        .timeline-header h1 {
-            font-size: 2.2rem;
-            color: #ffffff;
+        .menu-button:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-button span {
+            width: 22px; 
+            height: 2px; 
+            background: #00d9ff;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ================= OVERLAY ================= */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ================= SIDEBAR (GAYA GITHUB FORMAL GELAP) ================= */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -75%;
+            width: 75%;
+            max-width: 320px;
+            height: 100vh;
+            background: #0d1117; 
+            backdrop-filter: blur(20px);
+            padding: 80px 10px 20px; 
+            transition: 0.4s cubic-bezier(.77,0,.18,1);
+            z-index: 999;
+            border-right: 1px solid #30363d;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+
+        @media(min-width:768px) {
+            .sidebar { width: 320px; left: -320px; }
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .sidebar > a, 
+        .sidebar summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #c9d1d9;
+            font-size: 14px; 
+            font-weight: 400; 
+            padding: 10px 16px; 
+            margin-bottom: 2px;
+            border-radius: 6px; 
+            background: transparent; 
+            border: none;
+            transition: 0.2s;
+            cursor: pointer;
+            list-style: none; 
+        }
+
+        .sidebar summary::-webkit-details-marker { display: none; }
+
+        .sidebar > a:hover,
+        .sidebar summary:hover {
+            color: #58a6ff; 
+            background: rgba(255, 255, 255, 0.05); 
+        }
+
+        .sidebar .active {
+            color: #ffffff !important; 
+            font-weight: 600; 
+            background: rgba(255, 255, 255, 0.07) !important; 
+        }
+
+        .sidebar details[open] summary .arrow {
+            transform: rotate(180deg);
+        }
+
+        .sidebar summary .arrow {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .sidebar .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px; 
+            border-left: 1px solid #30363d; 
+            margin-top: 4px;
             margin-bottom: 10px;
         }
 
-        .timeline-header p {
-            color: #8b949e;
-            font-size: 0.95rem;
+        .sidebar .dropdown-content a {
+            text-decoration: none;
+            color: #8b949e; 
+            font-size: 13.5px;
+            padding: 8px 16px;
+            transition: 0.2s;
+            border-radius: 6px;
+            display: block;
         }
 
-        /* Area Konten Utama Putih (Menutupi Banner Saat Di-scroll) */
-        .main-content-zone {
-            background: #ffffff;
-            position: relative;
-            z-index: 5;
-            padding: 60px 24px;
-            box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1);
+        .sidebar .dropdown-content a:hover {
+            color: #58a6ff;
+            background: transparent;
         }
 
-        .timeline-container {
-            max-width: 750px;
-            margin: 0 auto;
-            position: relative;
+        /* ================= TAMPILAN HALAMAN (TEMA PUTIH) ================= */
+        
+        /* Bagian Header Atas + Foto miHoYo */
+        .page-header {
+            text-align: center;
+            padding: 60px 24px 20px; 
         }
 
-        /* ================= GARIS PETA DI SAMPING KIRI ================= */
-        .map-route {
-            position: relative;
-            padding-left: 45px;
-        }
-
-        .map-route::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            bottom: 15px;
-            left: 20px;
-            width: 2px;
-            background: #e1e4e8;
-            z-index: 1;
-        }
-
-        .timeline-row {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 45px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            min-height: 46px;
-        }
-
-        /* ================= STIKER HATSUNE MIKU FLOATING ================= */
-        .miku-sticker {
-            position: absolute;
-            right: 0;
-            top: 20px;
-            width: 110px; /* Ukuran stiker pas di samping */
-            height: auto;
-            border-radius: 12px;
-            pointer-events: none; /* Agar tidak mengganggu klik kapsul */
-            z-index: 3;
-            opacity: 0.9;
-            /* Efek Ayunan Floating Lembut */
-            animation: floatingSticker 4s ease-in-out infinite;
-        }
-
-        @keyframes floatingSticker {
-            0% { transform: translateY(0px) rotate(2deg); }
-            50% { transform: translateY(-12px) rotate(-2deg); }
-            100% { transform: translateY(0px) rotate(2deg); }
-        }
-
-        /* Sembunyikan stiker di layar sangat kecil agar tidak menumpuk teks */
-        @media (max-width: 500px) {
-            .miku-sticker {
-                display: none;
-            }
-        }
-
-        /* ================= ANIMASI KAPSUL MORPHING ================= */
-        .capsule {
-            position: relative;
-            background: #0d1117;
-            border: 2px solid #00d9ff;
-            border-radius: 30px;
-            width: 130px;
-            height: 46px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        border-radius 0.4s ease, 
-                        background 0.4s ease,
-                        border-color 0.4s ease;
-        }
-
-        .capsule:hover {
-            box-shadow: 0 6px 20px rgba(0, 217, 255, 0.25);
-        }
-
-        .capsule.rotating {
-            width: 46px;
-            height: 130px;
-            background: #00d9ff;
-            border-color: #00d9ff;
-        }
-
-        .capsule.expanded {
+        .hero-logo {
             width: 100%;
-            max-width: 600px;
-            height: auto;
-            min-height: 180px;
-            background: #ffffff;
-            border-color: #e1e4e8;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            cursor: default;
-            align-items: flex-start;
-            justify-content: flex-start;
+            max-width: 550px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
 
-        .year-label {
-            position: absolute;
-            color: #00d9ff;
-            font-weight: 800;
-            font-size: 1.15rem;
-            letter-spacing: 1px;
-            transition: transform 0.4s ease, opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .capsule.rotating .year-label {
-            transform: rotate(90deg) scale(0.8);
-            opacity: 0;
-        }
-
-        .capsule.expanded .year-label {
-            display: none;
-        }
-
-        .expanded-content {
-            position: relative;
-            width: 100%;
-            padding: 24px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .capsule.expanded .expanded-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            transition-delay: 0.35s;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: #0d1117;
-            padding: 4px 10px;
-            border-radius: 4px;
-            align-self: flex-start;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .badge:hover {
-            background: #ff3b30;
-        }
-
-        .expanded-content h3 {
-            font-size: 1.25rem;
+        .page-header h1 {
+            font-size: 2.2rem; 
+            margin-bottom: 10px;
             color: #111;
-            margin-bottom: 8px;
-            font-weight: 700;
         }
 
-        .expanded-content p {
-            font-size: 0.95rem;
-            color: #444;
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
         }
 
-        @media (min-width: 768px) {
-            .top-banner-zone { height: 33vh; }
-            .timeline-header h1 { font-size: 3rem; }
-            .miku-sticker { width: 140px; } /* Di laptop ukuran stiker sedikit lebih besar */
+        /* Container Pembungkus Bab */
+        .documentary-container {
+            max-width: 650px;        
+            margin: 0 auto;          
+            padding: 20px 24px 60px;
         }
+
+        /* Kotak Putih untuk Setiap Bab */
+        .chapter {
+            background: #ffffff; /* Putih bersih sesuai tema Home */
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .chapter-tag {
+            display: inline-block;
+            color: #0088cc;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .chapter h2 {
+            font-size: 1.4rem;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .chapter p {
+            font-size: 0.95rem;          
+            font-weight: 400;        
+            line-height: 1.6;        
+            color: #444;             
+            margin-bottom: 15px;
+            text-align: justify; 
+            word-break: break-word;   
+            hyphens: auto;   
+        }
+
+        .chapter p:last-child {
+            margin-bottom: 0;
+        }
+
+        .chapter blockquote {
+            border-left: 4px solid #00d9ff;
+            padding-left: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #222;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Tabel Info Pendiri (Gaya Terang) */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+
+        .info-table th, .info-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .info-table th {
+            background: #f9f9f9;
+            color: #111;
+        }
+
+        /* Grid Khusus Bab 10 */
+        .tech-grid {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tech-card {
+            background: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 3px solid #00d9ff;
+        }
+
+        .tech-card h4 {
+            font-size: 0.95rem;
+            color: #111;
+            margin-bottom: 3px;
+        }
+
+        .tech-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* ================= FOOTER (PUTIH SESUAI HOME) ================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 14px;
+            width: 100%;
+            margin-top: auto; 
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="menu-button" id="menuToggleBtn">
-        <span></span><span></span><span></span>
+    <div class="top-bar">
+        <div class="brand-title">
+            <span class="main-title">Developer Website</span>
+            <span class="sub-title">Rafa Rafka</span>
+        </div>
     </div>
 
-    <header class="top-bar" style="position: fixed; top: 0; left: 0; width: 100%; height: 60px; background: rgba(20,20,25,0.96); z-index: 10008; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <div class="brand-title" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right;">
-            <span class="main-title" style="color: #ffffff; font-family: 'Impact', sans-serif; font-size: 20px; text-transform: uppercase;">DEVELOPER WEBSITE</span>
-            <span class="sub-title" style="color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 300;">Rafa Rafka</span>
-        </div>
-    </header>
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-    <div class="overlay" id="menuOverlay"></div>
-    
-    <div class="sidebar" id="sideNavigation">
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="sidebar" id="sidebar">
         <a href="index.html">Home</a>
 
         <details class="dropdown" open>
-            <summary class="active">About HoYoverse <span class="arrow">▼</span></summary>
+            <summary>About HoYoverse <span class="arrow">▼</span></summary>
             <div class="dropdown-content">
-                <a href="origin.html" style="color: #58a6ff; font-weight: 600;">Our Origin</a>
+                <a href="origin.html" class="active">Our Origin</a>
                 <a href="timeline.html">Timeline</a>
             </div>
         </details>
@@ -291,117 +426,132 @@
         <a href="profil.html">About Me</a>
     </div>
 
-    <div class="top-banner-zone">
-        <div class="timeline-header">
-            <h1>Journey Timeline</h1>
-            <p>Jejak kronologis langkah besar studio dari masa ke masa.</p>
+    <div class="main-content">
+        
+        <div class="page-header">
+            <img src="miHoYo.jpg" class="hero-logo" alt="miHoYo Logo">
+            <h1>Our Origin</h1>
+            <p class="subtitle">Melihat kembali akar sejarah, idealisme, dan bagaimana baris kode para otaku berhasil merevolusi industri hiburan global.</p>
         </div>
-    </div>
 
-    <div class="main-content-zone">
-        <div class="timeline-container">
+        <div class="documentary-container">
             
-            <img src="Hatsune.jpg" alt="Miku Sticker" class="miku-sticker">
+            <div class="chapter">
+                <span class="chapter-tag">Prolog</span>
+                <h2>Industri yang Tidak Melihat Mereka</h2>
+                <p>Awal 2010-an adalah era ketika industri game global dikuasai secara kaku oleh studio raksasa, modal masif, dan formula aman yang dapat diprediksi. Di Tiongkok, pasar dipenuhi oleh MMORPG bertema sejarah dinasti konvensional dan game kompetitif berbasis rutinitas grinding yang melelahkan.</p>
+                blockquote>“Ide tentang game bergaya anime dianggap terlalu kecil, terlalu niche, dan tidak menjanjikan secara bisnis.”</blockquote>
+                <p>Namun di balik semua kebisingan industri yang monoton itu, sebuah ambisi besar sedang dirancang diam-diam di sudut kamar asrama mahasiswa teknik.</p>
+            </div>
 
-            <div class="map-route">
-                
-                <div class="timeline-row">
-                    <div class="capsule" onclick="toggleCapsule(this)">
-                        <div class="year-label">2011</div>
-                        <div class="expanded-content">
-                            <span class="badge" onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">TUTUP ×</span>
-                            <h3>Pendirian miHoYo</h3>
-                            <p>Tiga mahasiswa Universitas Shanghai Jiao Tong mendirikan studio kecil di asrama kampus dengan modal slogan legendaris "Tech Otakus Save the World".</p>
-                        </div>
+            <div class="chapter">
+                <span class="chapter-tag">Bab 1 • Tahun 2011</span>
+                <h2>Kamar Asrama yang Menjadi “Laboratorium”</h2>
+                <p>Di Shanghai Jiao Tong University, tiga mahasiswa teknik komputer tingkat akhir berbagi satu ruang kamar asrama yang sempit. Mereka adalah Cai Haoyu, Liu Wei, dan Luo Yuhao. Tidak ada investor besar, tidak ada kantor mewah, dan tidak ada jaminan finansial sama sekali.</p>
+                <p>Yang mereka miliki hanyalah beberapa laptop sederhana yang sering kepanasan, kemampuan coding yang luar biasa, dan obsesi murni terhadap budaya ACG (Anime, Comic, Games). Dari kamar kecil itu, mereka membangun fondasi awal perusahaan bernama <strong>miHoYo</strong>.</p>
+                <table class="info-table">
+                    <tr><th>Pendiri</th><th>Fokus Peran Utama</th></tr>
+                    <tr><td><strong>Cai Haoyu</strong></td><td>Otak Teknologi & Visi Produk</td></tr>
+                    <tr><td><strong>Liu Wei (Dawei)</strong></td><td>Wajah Publik & Komunitas</td></tr>
+                    <tr><td><strong>Luo Yuhao</strong></td><td>Arsitek Kode & Core Engine</td></tr>
+                </table>
+                <blockquote>“Kami ingin membuat game yang kami sendiri, sebagai seorang otaku, ingin mainkan.”</blockquote>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 2 • Akhir 2011</span>
+                <h2>Game Pertama: Bukti Bahwa Mimpi Itu Nyata</h2>
+                <p>Game komersial pertama yang berhasil dirilis secara mandiri dari rahim studio amatir ini berjudul <strong>FlyMe2theMoon</strong>. Game ini merupakan sebuah 2D action-platformer sederhana dengan gaya visual anime yang dipublikasikan di platform iOS yang kala itu baru berkembang.</p>
+                <p>Secara simbolis, game ini sangat penting bagi sejarah panjang perusahaan. Untuk pertama kalinya, untaian baris kode abstrak yang mereka tulis berubah menjadi produk interaktif nyata. Di sinilah karakter ikonik berambut perak bernama <strong>Kiana Kaslana</strong> pertama kali menampakkan wujud awalnya dalam semesta digital.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 3 • Tahun 2012</span>
+                <h2>Kelahiran Semesta “Honkai” & Tragedi Manusia</h2>
+                <p>Tahun 2012 menjadi titik transformasi struktural. Berbekal pinjaman kecil dari inkubator teknologi universitas, miHoYo merilis <em>Houkai Gakuen</em> (Honkai Gakuen 1). Di sinilah konsep fiksi ilmiah mengenai <strong>“Honkai”</strong> diperkenalkan secara resmi: sebuah kekuatan misterius destruktif yang bertujuan memurnikan peradaban manusia.</p>
+                <p>Walaupun visual permainannya masih menggunakan gaya 2D chibi yang imut, elemen fundamental narasi miHoYo mulai mengakar kuat: dunia kelam yang bersembunyi di balik estetika indah, konflik kepunahan massal, serta fokus cerita pada karakter perempuan yang kuat emosional.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 4 • Tahun 2013 - 2015</span>
+                <h2>Evolusi Di Atas Jurang Kebangkrutan</h2>
+                <p>Tahun-tahun ini dipenuhi oleh eksperimen keras, kegagalan skala kecil, penyempurnaan basis teknologi engine, dan penguatan struktur tim internal. miHoYo merilis <em>Guns GirlZ</em> (Honkai Gakuen 2) yang mulai mengadopsi model bisnis Free-to-Play dengan sistem monetisasi gacha.</p>
+                <p>Dari perjuangan mempertahankan arus kas ini, miHoYo memahami satu hal yang menjadi dogma suci mereka hingga hari ini: <strong>karakter adalah inti emosional dari semua game mereka.</strong> Bukan sekadar mekanik gameplay, melainkan jalinan empati mendalam antara pemain dan karakter fiksi tersebut.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 5 • Tahun 2016</span>
+                <h2>Honkai Impact 3rd & Lahirnya Identitas Global</h2>
+                <p>Pada akhir tahun 2016, miHoYo meluncurkan <strong>Honkai Impact 3rd</strong>. Inilah titik balik krusial di mana industri game mobile global tertegun melihat sebuah pencapaian teknis grafis 3D anime cel-shaded yang awalnya dianggap mustahil untuk sebuah ponsel pintar.</p>
+                <p>Game ini membawa kualitas animasi setara anime televisi Jepang, narasi cerita dramatis yang gelap, serta potongan adegan sinematik emosional. Semboyan korporasi mereka bergema kuat di seluruh komunitas internasional: <em>“May all the beauty be blessed in the world.”</em></p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 6 • Tahun 2020</span>
+                <h2>Ledakan Global yang Mengubah Lanskap Industri</h2>
+                <p>September 2020 dicatat sebagai sejarah besar dunia hiburan digital modern. miHoYo secara berani menginvestasikan dana riset sebesar 100 juta USD untuk merilis sebuah proyek dunia terbuka masif bertajuk <strong>Genshin Impact</strong> secara simultan di PC, Konsol, dan Mobile.</p>
+                <p>Dalam hitungan hari, jutaan pemain membanjiri server dan diskusi media sosial meledak. miHoYo menyajikan sebuah mahakarya dunia fantasi terbuka (Teyvat) yang kaya akan keragaman budaya sosiologis, gratis untuk dimainkan, tanpa mengorbankan kualitas grafis maupun kedalaman narasi.</p>
+                <blockquote>Genshin Impact bukan sekadar kesuksesan komersial biasa; ia adalah sebuah fenomena kebudayaan pop global baru.</blockquote>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 7 • Tahun 2022</span>
+                <h2>HoYoverse: Evolusi Menjadi Multidimensi</h2>
+                <p>Pasca kesuksesan masif yang diraih, miHoYo secara resmi meluncurkan merek global baru bernama <strong>HoYoverse</strong> dengan jaringan kantor operasional canggih di Singapura, Montreal, Los Angeles, Tokyo, dan Seoul.</p>
+                <p>Ini bukan sekadar perubahan nama atau restrukturisasi hukum korporasi biasa. Ini adalah manifesto visi jangka panjang yang sangat agresif: transformasi dari sebuah studio pengembang video game konvensional menjadi arsitek pembangun sebuah <em>Artificial Virtual World</em> terintegrasi.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 8 • Tahun 2023</span>
+                <h2>Honkai: Star Rail & Pembuktian Kekonsistenan Standar</h2>
+                <p>Ketika publik berasumsi bahwa kesuksesan Genshin Impact hanyalah faktor keberuntungan momentum pandemi, HoYoverse membungkam skeptisisme tersebut lewat perilisan <strong>Honkai: Star Rail</strong>, sebuah game RPG berbasis giliran (<em>Turn-Based</em>) luar angkasa yang megah.</p>
+                <p>Game ini langsung menduduki puncak tangga popularitas global, memenangkan predikat <em>Game of the Year</em> di berbagai platform internasional, serta membuktikan keunggulan metodologi produksi HoYoverse dalam mengeksekusi berbagai genre permainan secara konsisten.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 9 • Tahun 2024</span>
+                <h2>Zenless Zone Zero & Keberanian Eksperimen Gaya Urban</h2>
+                <p>Peluncuran <strong>Zenless Zone Zero (ZZZ)</strong> menjadi bukti keberanian eksperimen visual yang fresh. Berbeda total dari nuansa fantasi tradisional ataupun opera antariksa sci-fi, ZZZ membawa para pemain ke atmosfer perkotaan futuristik pasca-apokaliptik bernama New Eridu.</p>
+                <p>Dibalut dengan estetika street culture yang kental, musik hip-hop, grafiti jalanan mencolok, dan sistem pertarungan aksi cepat yang sangat stylish, game ini membuktikan bahwa tim internal HoYoverse menolak untuk stagnan.</p>
+            </div>
+
+            <div class="chapter">
+                <span class="chapter-tag">Bab 10 • Sekarang</span>
+                <h2>Ekosistem Hiburan Global yang Masif</h2>
+                <p>Hari ini, HoYoverse telah bertransformasi sepenuhnya menjadi sebuah ekosistem budaya global yang mapan. Karakter fiksi ciptaan mereka telah berevolusi menjadi ikon kebudayaan pop kontemporer internasional.</p>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Seni & Orkestra Dunia</h4>
+                        <p>Tur konser simfoni musik HOYO-MiX yang rutin digelar di gedung-gedung orkestra legendaris lintas benua.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Riset Teknologi AI & Cloud</h4>
+                        <p>Investasi masif pada riset kecerdasan buatan, superkomputer, hingga avatar digital masa depan.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="timeline-row">
-                    <div class="capsule" onclick="toggleCapsule(this)">
-                        <div class="year-label">2012</div>
-                        <div class="expanded-content">
-                            <span class="badge" onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">TUTUP ×</span>
-                            <h3>Lahirnya Era Honkai</h3>
-                            <p>Peluncuran seri perdana Houkai Gakuen yang sukses meletakkan batu pertama pembangunan semesta fiksi ilmiah anime milik korporasi.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="capsule" onclick="toggleCapsule(this)">
-                        <div class="year-label">2016</div>
-                        <div class="expanded-content">
-                            <span class="badge" onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">TUTUP ×</span>
-                            <h3>Honkai Impact 3rd</h3>
-                            <p>Langkah revolusioner mengadopsi grafis aksi 3D penuh pada perangkat seluler, menaikkan kelas studio menjadi pengembang papan atas.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="capsule" onclick="toggleCapsule(this)">
-                        <div class="year-label">2020</div>
-                        <div class="expanded-content">
-                            <span class="badge" onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">TUTUP ×</span>
-                            <h3>Genshin Impact Global Launch</h3>
-                            <p>Peluncuran mahakarya dunia terbuka lintas platform yang mencatatkan rekor dunia baru serta memicu gelombang popularitas masif global.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="capsule" onclick="toggleCapsule(this)">
-                        <div class="year-label">2023</div>
-                        <div class="expanded-content">
-                            <span class="badge" onclick="event.stopPropagation(); closeCapsule(this.parentElement.parentElement)">TUTUP ×</span>
-                            <h3>Rebranding & Star Rail</h3>
-                            <p>Melakukan transformasi identitas global menjadi HoYoverse serta meluncurkan judul taktis Honkai: Star Rail yang meraih penghargaan utama Game of the Year.</p>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="chapter" style="border-top: 4px solid #00d9ff;">
+                <span class="chapter-tag" style="color: #0088cc;">Epilog</span>
+                <h2>Masa Depan yang Belum Selesai</h2>
+                <p>Yang paling menarik dari sejarah panjang HoYoverse bukanlah apa yang telah mereka capai di masa lalu, melainkan kesadaran penuh bahwa mereka belum selesai melangkah.</p>
+                <p>Masa depan yang sedang mereka rancang melalui algoritma dan baris kode komputer bukanlah sekadar kumpulan sekuel game komersial belaka. Mereka sedang terus melangkah mantap menuju penciptaan sebuah dunia virtual utuh yang hidup.</p>
+                <blockquote>“Tech Otakus Save the World”</blockquote>
+                <p>Dari kamar asrama kecil, laptop sederhana, dan mimpi yang sempat diremehkan; kini menjelma menjadi fenomena peradaban digital berskala global. Perjalanan historis ini adalah bukti nyata bahwa teknologi yang bersanding dengan imajinasi murni... benar-benar mampu mengubah wajah dunia selamanya.</p>
             </div>
 
         </div>
     </div>
 
+    <footer>
+        &copy; Copyright by Rafa Aditya 2026
+    </footer>
+
     <script>
-        // Navigasi Sidebar
-        const menuToggleBtn = document.getElementById('menuToggleBtn');
-        const sideNav = document.getElementById('sideNavigation');
-        const overlay = document.getElementById('menuOverlay');
-
-        function toggleMenu() {
-            menuToggleBtn.classList.toggle('active');
-            sideNav.classList.toggle('show');
-            overlay.classList.toggle('show');
-        }
-
-        menuToggleBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-
-        // Mekanisme Animasi Kapsul
-        function toggleCapsule(element) {
-            if (element.classList.contains('expanded')) return;
-
-            document.querySelectorAll('.capsule.expanded').forEach(cap => {
-                closeCapsule(cap);
-            });
-
-            element.classList.add('rotating');
-            
-            setTimeout(() => {
-                element.classList.add('expanded');
-            }, 400); 
-        }
-
-        function closeCapsule(element) {
-            element.classList.remove('expanded');
-            element.classList.add('rotating'); 
-            
-            setTimeout(() => {
-                element.classList.remove('rotating');
-            }, 300);
+        function toggleMenu(){
+            document.getElementById("sidebar").classList.toggle("show");
+            document.getElementById("overlay").classList.toggle("show");
+            document.querySelector(".menu-button").classList.toggle("active");
         }
     </script>
 
