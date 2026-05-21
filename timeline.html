@@ -26,7 +26,7 @@
         }
 
         /* =========================================================
-           FIX NAVIGASI
+           FIX NAVIGASI & GARIS 3 (ULTRA SPESIFIK AGAR PASTI MUNCUL)
         ========================================================= */
 
         .sidebar{
@@ -37,51 +37,43 @@
             z-index:10001 !important;
         }
 
-        .menu-button{
-            position:fixed !important;
-            top:10px !important;
-            left:15px !important;
-
-            z-index:10010 !important;
-
-            display:flex !important;
-            flex-direction:column !important;
-            justify-content:center !important;
-            align-items:center !important;
-
-            gap:5px !important;
-
-            width:40px !important;
-            height:40px !important;
-
-            background:transparent !important;
-
-            cursor:pointer !important;
+        /* Selektor berlapis bertenaga tinggi untuk mengalahkan override style.css */
+        html body #menuToggleBtn.menu-button {
+            display: flex !important;
+            position: fixed !important;
+            top: 10px !important;
+            left: 15px !important;
+            z-index: 10010 !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 5px !important;
+            width: 40px !important;
+            height: 40px !important;
+            background: transparent !important;
+            cursor: pointer !important;
         }
 
-        .menu-button span{
-            display:block !important;
-
-            width:22px !important;
-            height:2px !important;
-
-            background:#00d9ff !important;
-
-            border-radius:10px !important;
-
-            transition:0.4s !important;
+        html body #menuToggleBtn.menu-button span {
+            display: block !important;
+            width: 24px !important;
+            height: 2px !important;
+            background: #00d9ff !important;
+            border-radius: 10px !important;
+            transition: 0.4s !important;
         }
 
-        .menu-button.active span:nth-child(1){
-            transform:translateY(7px) rotate(45deg) !important;
+        /* Animasi Transmisi Menjadi Huruf X saat Aktif */
+        html body #menuToggleBtn.menu-button.active span:nth-child(1){
+            transform: translateY(7px) rotate(45deg) !important;
         }
 
-        .menu-button.active span:nth-child(2){
-            opacity:0 !important;
+        html body #menuToggleBtn.menu-button.active span:nth-child(2){
+            opacity: 0 !important;
         }
 
-        .menu-button.active span:nth-child(3){
-            transform:translateY(-7px) rotate(-45deg) !important;
+        html body #menuToggleBtn.menu-button.active span:nth-child(3){
+            transform: translateY(-7px) rotate(-45deg) !important;
         }
 
         /* =========================================================
@@ -256,7 +248,7 @@
             opacity:0.75;
         }
 
-        /* MERAH (Dipindahkan ke Kanan Atas) */
+        /* MERAH */
 
         .photo-merah{
             right:-15px;
@@ -619,7 +611,7 @@
             </summary>
 
             <div class="dropdown-content">
-                <a href="#">The Masterpieces</a>
+                <a href="masterpieces.html">The Masterpieces</a>
                 <a href="#">Tech & Innovation</a>
                 <a href="galeri.html">Media Gallery</a>
             </div>
@@ -823,71 +815,48 @@
 
     <script>
 
-        // NAVIGATION
-
-        const menuToggleBtn =
-        document.getElementById('menuToggleBtn');
-
-        const sideNav =
-        document.getElementById('sideNavigation');
-
-        const overlay =
-    
-        document.getElementById('menuOverlay');
+        // NAVIGATION CONTROL
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const sideNav = document.getElementById('sideNavigation');
+        const overlay = document.getElementById('menuOverlay');
 
         function toggleMenu(){
-
             menuToggleBtn.classList.toggle('active');
-
+            
+            // Mengaktifkan kedua jenis class toggle (.show dan .active) 
+            // agar kompatibel dengan seluruh versi CSS proyekmu
             sideNav.classList.toggle('show');
+            sideNav.classList.toggle('active');
 
             overlay.classList.toggle('show');
+            overlay.classList.toggle('active');
         }
 
-        menuToggleBtn.addEventListener(
-            'click',
-            toggleMenu
-        );
+        menuToggleBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 
-        overlay.addEventListener(
-            'click',
-            toggleMenu
-        );
-
-        // CAPSULE SYSTEM
-
+        // CAPSULE ANIMATION SYSTEM
         function toggleCapsule(element){
+            if(element.classList.contains('expanded')) return;
 
-            if(element.classList.contains('expanded'))
-            return;
-
-            document.querySelectorAll('.capsule.expanded')
-            .forEach(cap=>{
-
+            document.querySelectorAll('.capsule.expanded').forEach(cap=>{
                 closeCapsule(cap);
-
             });
 
             element.classList.add('rotating');
 
             setTimeout(()=>{
-
                 element.classList.add('expanded');
-
-            },400);
+            }, 400);
         }
 
         function closeCapsule(element){
-
             element.classList.remove('expanded');
-
             element.classList.add('rotating');
 
             setTimeout(()=>{
-
                 element.classList.remove('rotating');
-
-            },300);
+            }, 300);
         }
 
     </script>
