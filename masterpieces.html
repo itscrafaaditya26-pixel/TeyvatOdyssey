@@ -85,7 +85,7 @@ body{
     width:100%;
     height:34vh;
 
-    background-image:url('background.jpg');
+    background-image: linear-gradient(rgba(245, 247, 251, 0.7), rgba(245, 247, 251, 0.7)), url('background.jpg');
 
     background-size:cover;
     background-position:center;
@@ -162,7 +162,6 @@ body{
 
     border-radius:18px;
 
-    /* overflow:hidden tetap di sini untuk menjaga radius sudut kartu luar */
     overflow:hidden;
 
     box-shadow:
@@ -192,8 +191,6 @@ body{
     background-position:center;
 
     border-bottom:3px solid #00d9ff;
-
-    /* KUNCI PERBAIKAN: overflow dihapus dari sini agar logo bisa keluar kontainer gambar */
 }
 
 /* ================= FOTO APK (OVERLAP DI GARIS HIJAU) ================= */
@@ -202,7 +199,7 @@ body{
     position:absolute;
 
     right:24px;
-    bottom:-39px; /* Nilai minus ini membuat logo pas berada di tengah garis batasan */
+    bottom:-39px;
 
     width:78px;
     height:78px;
@@ -220,7 +217,7 @@ body{
 
     border:3px solid white;
     
-    z-index: 5; /* Memastikan logo berada di lapisan paling depan */
+    z-index: 5;
 }
 
 .apk-logo img{
@@ -385,8 +382,7 @@ The Universe
 </summary>
 
 <div class="dropdown-content">
-<a href="masterpieces.html"
-style="color:#58a6ff;font-weight:600;">
+<a href="masterpieces.html" style="color:#58a6ff;font-weight:600;">
 The Masterpieces
 </a>
 
@@ -425,206 +421,142 @@ jutaan pemain di seluruh dunia.
 <div class="game-grid">
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto1.jpg');">
     <div class="apk-logo">
         <img src="apk1.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Puzzle Platformer
-</span>
-
+<span class="game-genre">Puzzle Platformer</span>
 <h2>FlyMe2theMoon</h2>
-
 <p>
 Karya independen pertama sebelum miHoYo resmi berdiri.
 Menampilkan Kiana Kaslana dalam petualangan menuju bulan
 dengan gameplay puzzle unik.
 </p>
-
 <div class="game-meta">
 <div>Rilis: <strong>2011</strong></div>
 <div>Platform: <strong>iOS</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto2.jpg');">
     <div class="apk-logo">
         <img src="apk2.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Side Scrolling Shooter
-</span>
-
+<span class="game-genre">Side Scrolling Shooter</span>
 <h2>Guns GirlZ</h2>
-
 <p>
 Awal mula dunia Honkai dengan gameplay aksi side-scrolling
 melawan zombie dalam nuansa anime futuristik.
 </p>
-
 <div class="game-meta">
 <div>Rilis: <strong>2014</strong></div>
 <div>Platform: <strong>Mobile</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto3.jpg');">
     <div class="apk-logo">
         <img src="apk3.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-3D Action RPG
-</span>
-
-<h2>Honkai Impact 3rd</h2>
-
+<span class="game-genre">Open World RPG</span>
+<h2>Genshin Impact</h2>
 <p>
-Game aksi cepat dengan visual sinematik dan
-sistem combo modern yang menjadi ikon miHoYo.
+Mahakarya open world Teyvat dengan eksplorasi bebas,
+elemen combat, dan visual anime modern.
 </p>
-
 <div class="game-meta">
-<div>Rilis: <strong>2016</strong></div>
-<div>Platform: <strong>PC & Mobile</strong></div>
+<div>Rilis: <strong>2020</strong></div>
+<div>Platform: <strong>All Platform</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto4.jpg');">
     <div class="apk-logo">
         <img src="apk4.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Romance Detective
-</span>
-
-<h2>Tears of Themis</h2>
-
+<span class="game-genre">3D Action RPG</span>
+<h2>Honkai Impact 3rd</h2>
 <p>
-Petualangan investigasi hukum dengan nuansa romantis
-modern di kota futuristik Stellis.
+Game aksi cepat dengan visual sinematik dan
+sistem combo modern yang menjadi ikon miHoYo.
 </p>
-
 <div class="game-meta">
-<div>Rilis: <strong>2021</strong></div>
-<div>Platform: <strong>Mobile</strong></div>
+<div>Rilis: <strong>2016</strong></div>
+<div>Platform: <strong>PC & Mobile</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto5.jpg');">
     <div class="apk-logo">
         <img src="apk5.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Open World RPG
-</span>
-
-<h2>Genshin Impact</h2>
-
+<span class="game-genre">Romance Detective</span>
+<h2>Tears of Themis</h2>
 <p>
-Mahakarya open world Teyvat dengan eksplorasi bebas,
-elemen combat, dan visual anime modern.
+Petualangan investigasi hukum dengan nuansa romantis
+modern di kota futuristik Stellis.
 </p>
-
 <div class="game-meta">
-<div>Rilis: <strong>2020</strong></div>
-<div>Platform: <strong>All Platform</strong></div>
+<div>Rilis: <strong>2021</strong></div>
+<div>Platform: <strong>Mobile</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto6.jpg');">
     <div class="apk-logo">
         <img src="apk6.jpg">
     </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Turn Based RPG
-</span>
-
+<span class="game-genre">Turn Based RPG</span>
 <h2>Honkai Star Rail</h2>
-
 <p>
 Perjalanan kosmik Astral Express dengan gameplay
 strategi turn-based dan dunia sci-fi megah.
 </p>
-
 <div class="game-meta">
 <div>Rilis: <strong>2023</strong></div>
 <div>Platform: <strong>PC, PS5, Mobile</strong></div>
 </div>
-
 </div>
 </div>
 
 <div class="game-card">
-
 <div class="game-image" style="background-image:url('foto7.jpg');">
     <div class="apk-logo">
-        <img src="apk7.jpg">
-    </div>
+        <img src="apk7.jpg"> </div>
 </div>
-
 <div class="game-info">
-
-<span class="game-genre">
-Urban Fantasy RPG
-</span>
-
+<span class="game-genre">Urban Fantasy RPG</span>
 <h2>Zenless Zone Zero</h2>
-
 <p>
 Action RPG urban modern dengan visual stylish,
 musik energik, dan combat super cepat.
 </p>
-
 <div class="game-meta">
 <div>Rilis: <strong>2024</strong></div>
 <div>Platform: <strong>PC, PS5, Mobile</strong></div>
 </div>
-
 </div>
 </div>
 
