@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer & Credit - Developer Website</title>
+    <style>
+        /* ================= RESET & DASAR ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4; 
+            color: #444; 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 60px; 
+        }
+
+        /* ================= BATANG HITAM ATAS (TOP BAR) ================= */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px; 
+            background: rgba(20, 20, 25, 0.96); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 997; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            text-align: right;
+            font-family: 'Impact', 'Arial Black', sans-serif; 
+            padding-left: 50px;
+        }
+
+        .main-title {
+            color: #ffffff;
+            font-size: 24px; 
+            text-transform: uppercase; 
+            line-height: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif; 
+            font-size: 14px; 
+            font-weight: 300;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        @media(max-width: 767px) {
+            .main-title { font-size: 5vw; }
+            .sub-title { font-size: 3vw; }
+        }
+
+        /* ================= TOMBOL GARIS 3 ================= */
+        .menu-button {
+            position: fixed;
+            top: 10px; 
+            left: 15px;
+            width: 40px; 
+            height: 40px;
+            background: transparent; 
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px; 
+            cursor: pointer;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .menu-button:hover { transform: scale(1.1); }
+
+        .menu-button span {
+            width: 22px; 
+            height: 2px; 
+            background: #00d9ff;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .menu-button.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-button.active span:nth-child(2) { opacity: 0; }
+        .menu-button.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ================= OVERLAY ================= */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.show { opacity: 1; visibility: visible; }
+
+        /* ================= SIDEBAR GELAP ================= */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -75%;
+            width: 75%;
+            max-width: 320px;
+            height: 100vh;
+            background: #0d1117; 
+            backdrop-filter: blur(20px);
+            padding: 80px 10px 20px; 
+            transition: 0.4s cubic-bezier(.77,0,.18,1);
+            z-index: 999;
+            border-right: 1px solid #30363d;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+
+        @media(min-width:768px) { .sidebar { width: 320px; left: -320px; } }
+        .sidebar.show { left: 0; }
+
+        .sidebar > a, .sidebar summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #c9d1d9;
+            font-size: 14px; 
+            font-weight: 400; 
+            padding: 10px 16px; 
+            margin-bottom: 2px;
+            border-radius: 6px; 
+            transition: 0.2s;
+            cursor: pointer;
+            list-style: none; 
+        }
+
+        .sidebar summary::-webkit-details-marker { display: none; }
+        .sidebar > a:hover, .sidebar summary:hover { color: #58a6ff; background: rgba(255, 255, 255, 0.05); }
+        .sidebar .active { color: #ffffff !important; font-weight: 600; background: rgba(255, 255, 255, 0.07) !important; }
+        .sidebar details[open] summary .arrow { transform: rotate(180deg); }
+        .sidebar summary .arrow { font-size: 10px; transition: transform 0.2s ease; display: inline-block; }
+
+        .sidebar .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px; 
+            border-left: 1px solid #30363d; 
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .dropdown-content a {
+            text-decoration: none;
+            color: #8b949e; 
+            font-size: 13.5px;
+            padding: 8px 16px;
+            transition: 0.2s;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .sidebar .dropdown-content a:hover { color: #58a6ff; }
+
+        /* ================= HEADER SEPERTIGA ATAS BERGAMBAR CERAH ================= */
+        .page-header {
+            position: relative;
+            width: 100%;
+            height: 380px; 
+            background: url('perusahaan.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 24px;
+            margin-bottom: 40px;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(20, 20, 25, 0.45));
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2; 
+            max-width: 700px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem; 
+            margin-bottom: 15px;
+            color: #ffffff; 
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #ffffff; 
+            line-height: 1.6;
+            font-weight: 500;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        @media(max-width: 767px) {
+            .page-header { height: 300px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-header .subtitle { font-size: 0.95rem; }
+        }
+
+        /* ================= CONTAINER KONTEN ================= */
+        .credit-container {
+            max-width: 750px;        
+            margin: 0 auto;          
+            padding: 0 24px 60px;
+        }
+
+        .credit-section {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .credit-tag {
+            display: inline-block;
+            color: #ff4a4a;
+            background: #1e1e24;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .credit-section h2 {
+            font-size: 1.5rem;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .credit-section p {
+            font-size: 0.95rem;          
+            line-height: 1.6;        
+            color: #444;             
+            margin-bottom: 15px;
+            text-align: justify; 
+        }
+
+        .source-list {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .source-list li {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .source-list strong {
+            color: #111;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="brand-title">
+            <span class="main-title">Developer Website</span>
+            <span class="sub-title">Rafa Rafka</span>
+        </div>
+    </div>
+
+    <div class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+
+        <details class="dropdown">
+            <summary>About HoYoverse <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="origin.html">Our Origin</a>
+                <a href="timeline.html">Timeline</a>
+            </div>
+        </details>
+
+        <details class="dropdown">
+            <summary>The Universe <span class="arrow">▼</span></summary>
+            <div class="dropdown-content">
+                <a href="masterpieces.html">The Masterpieces</a>
+                <a href="tech.html">Tech & Innovation</a>
+                <a href="galeri.html">Media Gallery</a>
+            </div>
+        </details>
+
+        <a href="credits.html" class="active">Disclaimer & Credit</a>
+        <a href="about.html">About Me</a>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="page-header">
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1>Disclaimer & Credit</h1>
+                <p class="subtitle">Pernyataan hukum, hak cipta kekayaan intelektual, serta atribusi sumber daya yang digunakan dalam pengembangan situs web.</p>
+            </div>
+        </div>
+
+        <div class="credit-container">
+            
+            <div class="credit-section">
+                <span class="credit-tag" style="color: #ffcc00;">Pernyataan Penting</span>
+                <h2>Disclaimer (Penyangalan)</h2>
+                <p>Situs web ini dibuat murni untuk tujuan **pembelajaran, edukasi, dan proyek portofolio non-komersial**. Situs ini tidak berafiliasi langsung, didukung, disponsori, atau dikelola secara resmi oleh COGNOSPHERE PTE. LTD. (HoYoverse) maupun miHoYo Co., Ltd.</p>
+                <p>Segala bentuk kritik, rangkuman sejarah, dan analisis teknologi yang disajikan di dalam situs ini merupakan hasil kompilasi informasi publik demi tujuan dokumentasi edukatif.</p>
+            </div>
+
+            <div class="credit-section">
+                <span class="credit-tag" style="color: #00d9ff;">Hak Cipta</span>
+                <h2>Kekayaan Intelektual miHoYo / HoYoverse</h2>
+                <p>Seluruh materi visual, termasuk namun tidak terbatas pada logo produk, cuplikan gambar permainan (*screenshot*), desain karakter, serta merek dagang berikut merupakan milik sepenuhnya dari pemilik hak cipta masing-masing:</p>
+                <ul class="source-list">
+                    <li><strong>Merek & Nama Dagang:</strong> miHoYo, HoYoverse, HOYO-MiX, dan HoYoLAB adalah merek dagang terdaftar dari miHoYo Co., Ltd. atau Cognosphere Pte. Ltd.</li>
+                    <li><strong>Hak Cipta Game:</strong> *Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Honkai Impact 3rd, Tears of Themis,* dan *Tears of Themis* beserta seluruh materi grafis di dalamnya dilindungi oleh undang-undang hak cipta internasional.</li>
+                </ul>
+            </div>
+
+            <div class="credit-section">
+                <span class="credit-tag" style="color: #a855f7;">Referensi Data</span>
+                <h2>Atribusi & Sumber Informasi</h2>
+                <p>Konten kronologi sejarah, narasi asal-usul, serta dokumentasi riset teknologi di dalam website ini dirangkum dari berbagai sumber media tepercaya berikut:</p>
+                <ul class="source-list">
+                    <li><strong>Situs Resmi:</strong> hoyoverse.com, mihoyo.com, dan platform komunitas hoyolab.com.</li>
+                    <li><strong>Ensiklopedi Publik:</strong> Fandom Wiki (Genshin Impact Wiki & Honkai: Star Rail Wiki) serta Wikipedia Bahasa Indonesia/Inggris.</li>
+                    <li><strong>Media Dokumenter:</strong> Artikel jurnalistik dari TechCrunch, IGN, serta laporan resmi konferensi pengembang game (GDC - Game Developers Conference).</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; Copyright by Rafa Aditya 2026
+    </footer>
+
+    <script>
+        function toggleMenu(){
+            document.getElementById("sidebar").classList.toggle("show");
+            document.getElementById("overlay").classList.toggle("show");
+            document.querySelector(".menu-button").classList.toggle("active");
+        }
+    </script>
+
+</body>
+      </html>
+              
